@@ -53,17 +53,24 @@ function FormAuditoria() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
-		console.log(user);
+
 		try {
-			console.log("auditoriaData:", auditoriaData);
-
-
+			console.log("📤 Enviando auditoría principal:", auditoriaData);
 			const res = await auditoriaServices.crearAuditoria(auditoriaData);
-			if (!res.success) throw new Error("Error al crear la auditoría principal");
+
+			if (!res.success) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'No se pudo crear la auditoría principal',
+				});
+				return;
+			}
 
 			const auditoriaId = res.auditoria_id;
+			console.log("✅ Auditoría creada:", auditoriaId);
 
-			// 2️⃣ Diagnósticos (cies)
+			// 🔹 Diagnósticos (CIES)
 			if (form.cies.length > 0) {
 				const auditoriaCiesData = form.cies.map(cie => ({
 					auditorias_id: auditoriaId,
@@ -74,10 +81,10 @@ function FormAuditoria() {
 					auditoriaCiesData.map(data => auditoriaCiesServices.crearAuditoriaCies(data))
 				);
 
-				console.log("✅ Diagnósticos (cies) guardados");
+				console.log("✅ Diagnósticos guardados");
 			}
 
-			// 3️⃣ Respuestas
+			// 🔹 Respuestas
 			if (form.respuestas.length > 0) {
 				const respuestasData = form.respuestas.map(r => ({
 					auditoria_id: auditoriaId,
@@ -101,7 +108,7 @@ function FormAuditoria() {
 				showConfirmButton: false
 			});
 
-			// 4️⃣ Limpiar form
+			// 🔹 Limpiar formulario
 			setForm({
 				fecha_auditoria: "",
 				fecha_atencion: "",
