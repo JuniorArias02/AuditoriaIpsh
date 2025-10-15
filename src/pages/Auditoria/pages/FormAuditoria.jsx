@@ -1,5 +1,5 @@
 // FormAuditoria.jsx
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Save, PlusCircle, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import DatosBasicosAuditoria from "../componets/FormAuditoria/DatosBasicosAuditoria";
