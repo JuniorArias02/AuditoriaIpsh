@@ -16,7 +16,7 @@ function FormAuditoria() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const [form, setForm] = useState({
-		creador_id: user.id,
+		creador_id: user ? user.id : null,
 		fecha_auditoria: "",
 		fecha_atencion: "",
 		servicio_auditado: "",
@@ -45,7 +45,11 @@ function FormAuditoria() {
 	const handlePuntajeChange = useCallback((valores) => {
 		setForm(prev => ({ ...prev, ...valores }));
 	}, []);
-
+	useEffect(() => {
+		if (user) {
+			setForm(prev => ({ ...prev, creador_id: user.id }));
+		}
+	}, [user]);
 	const respuestaServices = new RespuestasServices(token);
 	const auditoriaServices = new AuditoriaServices(token);
 	const auditoriaCiesServices = new AuditoriaCiesServices(token);
