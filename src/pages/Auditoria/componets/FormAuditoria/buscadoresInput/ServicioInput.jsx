@@ -26,10 +26,7 @@ function ServicioInput({ form, setForm }) {
 
 
 			const serviciosArray = res.flat();
-			console.log("desde input", serviciosArray);
-			console.log("desde input JSON", JSON.stringify(serviciosArray, null, 2));
-
-
+			
 			const resultadosFinales = serviciosArray;
 
 			setResultados(resultadosFinales);
