@@ -18,9 +18,7 @@ function ListadoPacientes() {
   const cargarPacientes = async (query = "") => {
     try {
       setLoading(true);
-      console.log(query);
       const res = await pacienteService.listarPacientes(query);
-      console.log(res);
       if (res.success) {
         setPacientes(res.data);
         setTotal(res.total);

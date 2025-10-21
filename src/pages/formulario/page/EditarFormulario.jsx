@@ -18,6 +18,7 @@ import {
     Target
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Swal from "sweetalert2";
 
 function EditarFormulario() {
     const navigate = useNavigate();
@@ -53,26 +54,36 @@ function EditarFormulario() {
 
     const handleGuardar = async () => {
         setSaving(true);
-        console.log(JSON.stringify(formulario, null, 2));
-
         try {
             const res = await formularioService.actualizarFormulario(formulario);
-            console.log(JSON.stringify(res, null, 2));
-
             if (res.success) {
-                alert("✅ Formulario actualizado correctamente");
-                navigate(-1);
+                Swal.fire({
+                    icon: "success",
+                    title: "Formulario actualizado 🎉",
+                    text: "Los cambios se guardaron correctamente",
+                    confirmButtonColor: "#2563eb", // azul bonito
+                }).then(() => navigate(-1));
             } else {
-                alert("⚠️ Hubo un problema al guardar");
-                console.error(res);
+                Swal.fire({
+                    icon: "warning",
+                    title: "Algo salió mal 😕",
+                    text: "Hubo un problema al guardar el formulario",
+                    confirmButtonColor: "#f59e0b",
+                });
             }
         } catch (error) {
             console.error("❌ Error al guardar:", error);
-            alert("Error al guardar el formulario");
+            Swal.fire({
+                icon: "error",
+                title: "Error al guardar",
+                text: "Ocurrió un error en el servidor o la conexión",
+                confirmButtonColor: "#dc2626",
+            });
         } finally {
             setSaving(false);
         }
     };
+
 
 
     const calcularPorcentajeTotal = () => {

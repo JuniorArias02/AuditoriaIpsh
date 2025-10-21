@@ -16,7 +16,6 @@ export class RolesServices {
   static async buscarRolesPorNombre(nombre) {
     if (!nombre) throw new Error("Se requiere un nombre de servicio");
     const res = await axios.get(`${ROLES.OBTENER_POR_NOMBRE}${nombre}`);
-    console.log(res.data.data);
     return res.data.data ? [res.data.data] : [];
   }
 

@@ -12,7 +12,6 @@ export class ServicioAuditoriaService {
 	static async buscarServicioAuditoriaPorNombre(nombre) {
 		if (!nombre) throw new Error("Se requiere un nombre de servicio");
 		const res = await axios.get(`${SERVICIO_AUDITORIA.OBTENER_POR_NOMBRE}${nombre}`);
-		console.log(res.data.data);
 		return res.data.data ? [res.data.data] : [];
 	}
 
