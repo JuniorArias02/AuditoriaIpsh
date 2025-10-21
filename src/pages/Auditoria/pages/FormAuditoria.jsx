@@ -27,8 +27,10 @@ function FormAuditoria() {
 		total_criterios: 0,
 		porcentaje_cumplimiento: 0,
 		cies: [],
-		respuestas: []
+		respuestas: [],
+		formulario_auditoria_id: "",
 	});
+
 	const auditoriaData = {
 		creador_id: form.creador_id,
 		fecha_auditoria: form.fecha_auditoria,
@@ -40,11 +42,13 @@ function FormAuditoria() {
 		puntaje_total: form.puntaje_total,
 		total_criterios: form.total_criterios,
 		porcentaje_cumplimiento: form.porcentaje_cumplimiento,
+		formulario_auditoria_id: form.formulario_auditoria_id,
 	};
 
 	const handlePuntajeChange = useCallback((valores) => {
 		setForm(prev => ({ ...prev, ...valores }));
 	}, []);
+
 	useEffect(() => {
 		if (user) {
 			setForm(prev => ({ ...prev, creador_id: user.id }));
@@ -112,7 +116,6 @@ function FormAuditoria() {
 				showConfirmButton: false
 			});
 
-			// 🔹 Limpiar formulario
 			setForm({
 				fecha_auditoria: "",
 				fecha_atencion: "",
@@ -177,6 +180,7 @@ function FormAuditoria() {
 					<DatosBasicosAuditoria form={form} setForm={setForm} />
 					<DiagnosticoMedico form={form} setForm={setForm} />
 					<EvaluacionesCriterio
+						formulario_auditoria_id={form.formulario_auditoria_id}
 						onPuntajeChange={handlePuntajeChange}
 					/>
 					<div className="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-gray-200">

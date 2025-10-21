@@ -16,7 +16,7 @@ import {
 import Swal from "sweetalert2";
 
 function CrearUsuario() {
-	const { token } = useAuth();
+	const { token, user } = useAuth();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [roles, setRoles] = useState([]);

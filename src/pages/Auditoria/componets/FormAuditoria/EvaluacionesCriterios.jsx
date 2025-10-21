@@ -1,148 +1,21 @@
-import React, {
-	useEffect,
-	useState,
-	useMemo,
-	useCallback
-} from "react";
-import {
-	CheckCircle,
-	XCircle,
-	MinusCircle,
-	FileText,
-	AlertCircle,
-	Calculator,
-	Target,
-} from "lucide-react";
-import { DimencionesServices } from "../../../../api/services/dimencionesServices";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
+import { FileText, Calculator } from "lucide-react";
+import CriterioItem from "./components/CriterioItem";
+import { FormularioDimensionesServices } from "../../../../api/services/formularioDimencionesServices";
+import { useAuth } from "../../../../store/AuthContext";
 
-/* ------------------ Subcomponente optimizado ------------------ */
-const CriterioItem = React.memo(({ criterio, respuesta, onSeleccion, onObservacion }) => {
-	const valor = respuesta?.valor;
-
-	// 📝 Estado local para observaciones (fluido)
-	const [texto, setTexto] = useState(respuesta?.observacion || "");
-
-	// Si cambia la respuesta externa (por ejemplo, al cargar datos)
-	useEffect(() => {
-		setTexto(respuesta?.observacion || "");
-	}, [respuesta?.observacion]);
-
-	// Debounce: solo manda cambios al padre después de 400ms sin escribir
-	useEffect(() => {
-		const delay = setTimeout(() => {
-			onObservacion(criterio.id, texto);
-		}, 400);
-		return () => clearTimeout(delay);
-	}, [texto, criterio.id, onObservacion]);
-
-	const getColorClase = (valor) => {
-		switch (valor) {
-			case 1:
-				return "bg-green-500 border-green-500 text-white";
-			case 0:
-				return "bg-yellow-500 border-yellow-500 text-white";
-			case undefined:
-				return "bg-gray-400 border-gray-400 text-white";
-			default:
-				return "bg-gray-200 border-gray-300 text-gray-600";
-		}
-	};
-
-	const getIcono = (valor) => {
-		switch (valor) {
-			case 1:
-				return <CheckCircle className="w-4 h-4" />;
-			case 0:
-				return <XCircle className="w-4 h-4" />;
-			case undefined:
-				return <MinusCircle className="w-4 h-4" />;
-			default:
-				return null;
-		}
-	};
-
-	return (
-		<div
-			className={`p-4 rounded-xl border-2 transition-all ${valor !== undefined
-				? "border-blue-200 bg-blue-50"
-				: "border-gray-100 bg-gray-50"
-				}`}
-		>
-			{/* Descripción */}
-			<div className="flex items-start gap-3 mb-4">
-				<div
-					className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold ${valor !== undefined
-						? "bg-blue-600 text-white"
-						: "bg-gray-300 text-gray-600"
-						}`}
-				>
-					{criterio.orden}
-				</div>
-				<div className="flex-1">
-					<p className="text-gray-800">{criterio.descripcion}</p>
-					{valor !== undefined && (
-						<div className="flex items-center gap-2 mt-2">
-							<Target className="w-4 h-4 text-blue-600" />
-							<span className="text-sm font-medium text-blue-600">
-								Puntuación: {valor}/1 pts
-							</span>
-						</div>
-					)}
-				</div>
-			</div>
-
-			{/* Botones */}
-			<div className="flex flex-wrap gap-3 mb-4">
-				{[
-					{ valor: 1, label: "Cumple", color: "green" },
-					{ valor: 0, label: "No cumple", color: "yellow" },
-					{ valor: undefined, label: "N/A", color: "gray" },
-				].map((op) => (
-					<button
-						key={op.valor}
-						type="button"
-						onClick={() => onSeleccion(criterio.id, op.valor)}
-						className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 font-medium transition-all ${valor === op.valor
-							? getColorClase(op.valor)
-							: `border-${op.color}-300 text-${op.color}-700 hover:bg-${op.color}-50`
-							}`}
-					>
-						{getIcono(op.valor)}
-						{op.label} ({op.valor ?? "N/A"})
-					</button>
-				))}
-			</div>
-
-			{/* Observación */}
-			<div>
-				<label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-					<AlertCircle className="w-4 h-4 text-gray-500" />
-					Observaciones
-				</label>
-				<textarea
-					value={texto}
-					onChange={(e) => setTexto(e.target.value)}
-					placeholder="Agregue observaciones..."
-					className="w-full text-sm border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
-					rows="3"
-				/>
-			</div>
-		</div>
-	);
-});
-
-/* ------------------ Componente principal ------------------ */
-function EvaluacionesCriterios({ onPuntajeChange }) {
+function EvaluacionesCriterios({ onPuntajeChange, formulario_auditoria_id }) {
+	const { token } = useAuth();
 	const [dimensiones, setDimensiones] = useState([]);
 	const [respuestas, setRespuestas] = useState({});
 	const [loading, setLoading] = useState(false);
+	const formularioDimensionesService = new FormularioDimensionesServices(token);
 
-	// 🧠 Obtener dimensiones solo una vez
 	useEffect(() => {
 		const fetchDimensiones = async () => {
 			setLoading(true);
 			try {
-				const res = await DimencionesServices.obtenerCriterios();
+				const res = await formularioDimensionesService.obtenerFormularioDimensionesPorFormulario(formulario_auditoria_id);
 				setDimensiones(res);
 			} catch (error) {
 				console.error("Error cargando dimensiones:", error);
@@ -151,9 +24,8 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 			}
 		};
 		fetchDimensiones();
-	}, []);
+	}, [formulario_auditoria_id]);
 
-	// 🪄 Memoizar handlers
 	const handleSeleccion = useCallback((criterioId, valor) => {
 		setRespuestas((prev) => ({
 			...prev,
@@ -168,30 +40,51 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 		}));
 	}, []);
 
-	// 📊 Calcular totales con useMemo
+	// 🔹 Calcular puntaje total (con soporte "no aplica")
 	const { puntajeTotal, puntajeMaximo, criteriosRespondidos, totalCriterios } = useMemo(() => {
-		let total = 0, maximo = 0, respondidos = 0;
+		let puntajeGlobal = 0;
+		let totalPorcentaje = 0;
+
 		dimensiones.forEach(dim => {
-			dim.criterios.forEach(criterio => {
-				const r = respuestas[criterio.id];
-				if (r?.valor === 0 || r?.valor === 1) {
-					total += r.valor;
-					maximo++;
-					respondidos++;
-				}
+			const criterios = dim.criterios;
+			// Filtrar criterios que fueron respondidos
+			const criteriosValidos = criterios.filter(c => {
+				const r = respuestas[c.id];
+				return r?.valor === 0 || r?.valor === 1 || r?.valor === 2;
 			});
+
+			if (criteriosValidos.length === 0) return;
+
+			// Excluir los que son “no aplica”
+			const criteriosEvaluables = criteriosValidos.filter(c => respuestas[c.id]?.valor !== 2);
+			if (criteriosEvaluables.length === 0) return;
+
+			const cumple = criteriosEvaluables.filter(c => respuestas[c.id]?.valor === 1).length;
+
+			// Fórmula: (porcentajeDim / totalEvaluables) * cumple
+			const porcentajeCumplido = (cumple / criteriosEvaluables.length) * parseFloat(dim.porcentaje);
+
+			puntajeGlobal += porcentajeCumplido;
+			totalPorcentaje += parseFloat(dim.porcentaje);
 		});
-		return { puntajeTotal: total, puntajeMaximo: maximo, criteriosRespondidos: respondidos, totalCriterios: maximo };
+
+		return {
+			puntajeTotal: puntajeGlobal,
+			puntajeMaximo: totalPorcentaje,
+			criteriosRespondidos: Object.keys(respuestas).length,
+			totalCriterios: dimensiones.reduce((acc, d) => acc + d.criterios.length, 0),
+		};
 	}, [respuestas, dimensiones]);
 
+	// 🔹 Calcular porcentaje total
 	const porcentajeCumplimiento = useMemo(() => (
 		puntajeMaximo > 0 ? (puntajeTotal / puntajeMaximo) * 100 : 0
 	), [puntajeTotal, puntajeMaximo]);
 
-	// 🧾 Reportar al padre solo cuando cambien datos relevantes
+	// 🔹 Enviar cambios al padre
 	useEffect(() => {
 		const respuestasArray = Object.entries(respuestas)
-			.filter(([_, data]) => data.valor === 0 || data.valor === 1)
+			.filter(([_, data]) => [0, 1, 2].includes(data.valor))
 			.map(([criterio_id, data]) => ({
 				criterio_id: parseInt(criterio_id),
 				puntaje: data.valor,
@@ -205,6 +98,7 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 		});
 	}, [puntajeTotal, puntajeMaximo, porcentajeCumplimiento, respuestas, onPuntajeChange]);
 
+	// 🔹 Niveles de cumplimiento
 	const getNivelCumplimiento = () => {
 		const p = porcentajeCumplimiento;
 		if (p >= 95) return { texto: "Excelente", color: "text-green-600", bg: "bg-green-100" };
@@ -242,7 +136,7 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 					<div className="text-right">
 						<div className="flex items-center gap-2 text-lg font-bold text-gray-900">
 							<Calculator className="w-5 h-5 text-blue-600" />
-							Puntaje: {puntajeTotal}/{puntajeMaximo}
+							Puntaje: {puntajeTotal.toFixed(2)}/{puntajeMaximo.toFixed(2)}
 						</div>
 						<div className="text-2xl font-bold text-blue-600 mt-1">
 							{porcentajeCumplimiento.toFixed(1)}%
@@ -252,31 +146,15 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 						</div>
 					</div>
 				</div>
-
-				{/* Barra de progreso lo oculto por el momento  */}
-				{/* <div className="mt-6 pt-4 border-t border-gray-100">
-					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm text-gray-600">
-							Progreso: {criteriosRespondidos}/{totalCriterios}
-						</span>
-						<span className="text-sm text-gray-600">
-							{((criteriosRespondidos / totalCriterios) * 100).toFixed(1)}% completado
-						</span>
-					</div>
-					<div className="w-full bg-gray-200 rounded-full h-2">
-						<div
-							className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-							style={{ width: `${(criteriosRespondidos / totalCriterios) * 100}%` }}
-						></div>
-					</div>
-				</div> */}
 			</div>
 
 			{/* Dimensiones */}
 			<div className="space-y-4">
 				{dimensiones.map((dim) => {
-					const puntajeDimension = dim.criterios.reduce((t, c) => t + (respuestas[c.id]?.valor || 0), 0);
-					const maximoDimension = dim.criterios.length;
+					const criteriosEvaluables = dim.criterios.filter(c => respuestas[c.id]?.valor !== 2);
+					const cumple = criteriosEvaluables.filter(c => respuestas[c.id]?.valor === 1).length;
+					const maximoDimension = criteriosEvaluables.length;
+					const porcentajeDim = maximoDimension > 0 ? (cumple / maximoDimension) * 100 : 0;
 
 					return (
 						<div key={dim.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
@@ -291,9 +169,9 @@ function EvaluacionesCriterios({ onPuntajeChange }) {
 									</div>
 								</div>
 								<div className="text-right text-white font-bold">
-									{puntajeDimension}/{maximoDimension}
+									{cumple}/{maximoDimension}
 									<div className="text-blue-200 text-sm">
-										{((puntajeDimension / maximoDimension) * 100).toFixed(1)}%
+										{porcentajeDim.toFixed(1)}%
 									</div>
 								</div>
 							</div>

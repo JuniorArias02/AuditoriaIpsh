@@ -22,6 +22,12 @@ const PAGES_ROUTES = {
     DETALLE_AUDITORIA: "/DetalleAuditoria"
   },
 
+  FORMULARIO: {
+    CREAR: "/CrearFormularioAuditoria",
+    ROOT: "/FormulariosAuditorias",
+    EDITAR: "/EditarFormularioAuditoria",
+  },
+
   USUARIO: {
     ROOT: `${DASHBOARD}/usuarios`,
     CREAR: `${DASHBOARD}/usuario/crear`,
@@ -29,6 +35,12 @@ const PAGES_ROUTES = {
     LISTAR: `${DASHBOARD}/usuario/listar`,
   },
 
+  PACIENTE: {
+    ROOT: `${DASHBOARD}/pacientes`,
+    CREAR: `${DASHBOARD}/paciente/crear`,
+    DETALLE: `${DASHBOARD}/paciente/detalle`,
+    LISTAR: `${DASHBOARD}/paciente/listar`,
+  },
 
 };
 

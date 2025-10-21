@@ -5,7 +5,8 @@ import { AuthProvider } from "./store/AuthContext.jsx";
 import App from "./App.jsx";
 import "./index.css";
 import "./App.css";
-import "./style/customs.css"
+// import "./style/customs.css"
+import "./style/monserrat.js"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

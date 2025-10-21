@@ -49,7 +49,7 @@ function Error404() {
                     </button>
                     
                     <button
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/dashboard')}
                         className="border border-[#2269A6] text-[#2269A6] hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition-colors duration-200"
                     >
                         Ir al inicio

@@ -2,6 +2,7 @@ import ServicioInput from "./buscadoresInput/ServicioInput";
 import SedeInput from "./buscadoresInput/SedeInput";
 import PacienteInput from "./buscadoresInput/PacienteInput";
 import ProfesionalInput from "./buscadoresInput/Profesionalnput";
+import FormularioAuditoriaInput from "./buscadoresInput/FormularioAuditoriaInput";
 import { Calendar, ClipboardList } from "lucide-react";
 
 function DatosBasicosAuditoria({ form, setForm }) {
@@ -29,6 +30,7 @@ function DatosBasicosAuditoria({ form, setForm }) {
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{/* Fechas */}
 				<div className="space-y-4">
+					<FormularioAuditoriaInput form={form} setForm={setForm} />
 					<div>
 						<label className="block text-sm font-medium text-gray-700 mb-2">
 							<span className="flex items-center gap-2">

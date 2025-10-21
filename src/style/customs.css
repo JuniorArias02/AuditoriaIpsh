@@ -1,0 +1,188 @@
+/* ===== VARIABLES TIPOGRÁFICAS ===== */
+:root {
+  /* Fuentes */
+  --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Escala tipográfica - Sistema modular */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  --text-6xl: 3.75rem;   /* 60px */
+  --text-7xl: 4.5rem;    /* 72px */
+  
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+}
+
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: var(--leading-normal);
+  color: #1a202c; /* Gris oscuro médico */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== JERARQUÍA TIPOGRÁFICA ===== */
+
+/* H1 - Título Principal */
+h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+}
+
+/* H2 - Secciones Principales */
+h2 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: 1.25rem;
+  color: #2d3748;
+}
+
+/* H3 - Subsecciones */
+h3 {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: 1rem;
+  color: #2d3748;
+}
+
+/* H4 - Grupos de Contenido */
+h4 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: var(--leading-normal);
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+}
+
+/* H5 - Elementos Destacados */
+h5 {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: var(--leading-normal);
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+/* H6 - Texto Secundario */
+h6 {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: var(--leading-normal);
+  margin-bottom: 0.5rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* H7 - Custom (para casos especiales) */
+.h7 {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: var(--leading-normal);
+  margin-bottom: 0.5rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Párrafos */
+p {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1rem;
+  color: #4a5568;
+}
+
+/* Labels/Etiquetas */
+label {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: var(--leading-normal);
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Inputs */
+input, textarea, select {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-normal);
+}
+
+/* Botones */
+button {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: var(--text-base);
+}
+
+/* ===== CLASES UTILITARIAS ===== */
+
+/* Texto pequeño */
+.text-small {
+  font-size: var(--text-sm);
+  color: #718096;
+}
+
+/* Texto médico importante */
+.medical-important {
+  font-weight: 600;
+  color: #2b6cb0; /* Azul médico */
+}
+
+/* Texto de advertencia */
+.medical-warning {
+  font-weight: 500;
+  color: #c53030; /* Rojo médico */
+}
+
+/* Texto de éxito */
+.medical-success {
+  font-weight: 500;
+  color: #38a169; /* Verde médico */
+}
+
+/* Lead paragraph */
+.lead {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: var(--leading-relaxed);
+  color: #4a5568;
+}
+
+/* Texto caps para labels médicos */
+.medical-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #718096;
+}

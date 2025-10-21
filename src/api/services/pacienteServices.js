@@ -7,6 +7,24 @@ export class PacienteService {
 		this.token = token;
 	}
 
+	async listarPacientes(query = "") {
+		const url = `${PACIENTE.LISTAR}?query=${encodeURIComponent(query)}`;
+		const res = await axios.get(url, {
+			headers: this.token ? { Authorization: `Bearer ${this.token}` } : {},
+		});
+		return res.data;
+	}
+
+
+
+	async crearPaciente(data) {
+		const res = await axios.post(`${PACIENTE.CREAR}`, data, {
+			headers: this.token ? { Authorization: `Bearer ${this.token}` } : {},
+		});
+
+		return res.data;
+	}
+
 	async obtenerPaciente(id) {
 		if (!id) throw new Error("Se requiere un ID de paciente");
 
