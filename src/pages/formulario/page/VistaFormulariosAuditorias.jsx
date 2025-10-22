@@ -134,7 +134,7 @@ function VistaFormulariosAuditorias() {
     };
 
     const crearNuevoFormulario = () => {
-        navigate("/crear-formulario");
+        navigate(PAGES_ROUTES.FORMULARIO.CREAR);
     };
 
     if (loading) {
