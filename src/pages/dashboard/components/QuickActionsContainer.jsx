@@ -36,25 +36,22 @@ export function QuickActionsContainer() {
 			title: "Reportes",
 			subtitle: "Generar reportes de cumplimiento",
 			icon: <BarChart3 className="w-6 h-6" />,
-			bgColor: "bg-purple-600"
-		},
-		{
-			title: "Buscar Auditorías",
-			subtitle: "Buscar auditorías específicas",
-			icon: <Search className="w-6 h-6" />,
-			bgColor: "bg-amber-600"
+			bgColor: "bg-purple-600",
+			onClick: () => navigate(PAGES_ROUTES.REPORTES.ROOT)
 		},
 		{
 			title: "Gestionar Profesionales",
 			subtitle: "Administrar personal de salud",
 			icon: <Users className="w-6 h-6" />,
-			bgColor: "bg-gray-600"
+			bgColor: "bg-gray-600",
+			onClick: () => navigate(PAGES_ROUTES.PROFESIONAL.ROOT)
 		},
 		{
 			title: "Gestionar Pacientes",
 			subtitle: "Administrar registro de pacientes",
 			icon: <User className="w-6 h-6" />,
-			bgColor: "bg-gray-600"
+			bgColor: "bg-gray-600",
+			onClick: () => navigate(PAGES_ROUTES.PACIENTE.ROOT)
 		}
 	];
 

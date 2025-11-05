@@ -9,6 +9,10 @@ import VistaPacientes from "../pages/pacientes/page/VistaPacientes";
 import CrearFormularioAuditoria from "../pages/formulario/page/CrearFormularioAuditoria";
 import VistaFormulariosAuditorias from "../pages/formulario/page/VistaFormulariosAuditorias";
 import EditarFormulario from "../pages/formulario/page/EditarFormulario";
+import Configuracion from "../pages/configuracion/page/Configuracion";
+import Sedes from "../pages/sedes/page/Sedes";
+import Profesional from "../pages/profesionales/page/Profesional";
+import Reportes from "../pages/Reportes/page/Reportes";
 export const privateRoutes = [
 	{
 		path: PAGES_ROUTES.DASHBOARD,
@@ -45,5 +49,21 @@ export const privateRoutes = [
 	{
 		path: PAGES_ROUTES.FORMULARIO.EDITAR,
 		element: <EditarFormulario />,
+	},
+	{
+		path: PAGES_ROUTES.CONFIGURACION.ROOT,
+		element: <Configuracion />,
+	},
+	{
+		path: PAGES_ROUTES.SEDES.ROOT,
+		element: <Sedes />,
+	},
+	{
+		path: PAGES_ROUTES.PROFESIONAL.ROOT,
+		element: <Profesional />,
+	},
+	{
+		path: PAGES_ROUTES.REPORTES.ROOT,
+		element: <Reportes />,
 	},
 ];

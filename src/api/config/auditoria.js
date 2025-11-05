@@ -9,5 +9,7 @@ export const AUDITORIA = {
 	LISTAR_AUDITORIAS: `${API_BASE}/auditoria/listarAuditorias`,
 	LISTAR_AUDITORIA_FILTRO: `${API_BASE}/auditoria/listarAuditoriasFiltro`,
 	DETALLE_AUDITORIA: `${API_BASE}/auditoria/detalle`,
-	DETALLE_AUDITORIA_EVALUACION: `${API_BASE}/auditoria/DetalleEvaluacion`
+	DETALLE_AUDITORIA_EVALUACION: `${API_BASE}/auditoria/DetalleEvaluacion`,
+	RESUMEN_MENSUAL: `${API_BASE}/auditoria/resumenMensual`,
+	REPORTES_AUDITORIAS: `${API_BASE}/reportes/auditoriasCompleto`
 };

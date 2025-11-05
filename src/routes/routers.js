@@ -42,6 +42,21 @@ const PAGES_ROUTES = {
     LISTAR: `${DASHBOARD}/paciente/listar`,
   },
 
+  CONFIGURACION: {
+    ROOT: `${DASHBOARD}/configuracion`,
+  },
+
+  SEDES: {
+    ROOT: `${DASHBOARD}/sedes`,
+  },
+
+  PROFESIONAL: {
+    ROOT: `${DASHBOARD}/profesionales`,
+  },
+
+  REPORTES: {
+    ROOT: `${DASHBOARD}/reportes`,
+  },
 };
 
 export default PAGES_ROUTES;

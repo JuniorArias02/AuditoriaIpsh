@@ -88,4 +88,15 @@ export class AuditoriaServices {
 		return res.data;
 	}
 
+	async obtenerResumenMensual(d){
+		if(!d) throw new Error("Se requiere dia como referencia");
+		const res = await axios.get(`${AUDITORIA.RESUMEN_MENSUAL}/${d}`);
+		return res.data;
+	}
+
+	async obtenerReportesAuditorias(){
+		const res = await axios.get(AUDITORIA.REPORTES_AUDITORIAS);
+		return res.data;
+	}
+
 }
