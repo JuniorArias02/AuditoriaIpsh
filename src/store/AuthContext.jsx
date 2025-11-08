@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import PAGES_ROUTES from "../routes/routers";
 
 const AuthContext = createContext();
 
@@ -7,6 +8,7 @@ export function AuthProvider({ children }) {
 	const [token, setToken] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [showWarning, setShowWarning] = useState(false);
+	const [permissions, setPermissions] = useState([]);
 
 	useEffect(() => {
 		const storedToken = localStorage.getItem("token");
@@ -25,21 +27,20 @@ export function AuthProvider({ children }) {
 		const { token, user } = data;
 		setToken(token);
 		setUser(user);
+		setPermissions(user.permissions)
 		localStorage.setItem("token", token);
 		localStorage.setItem("user", JSON.stringify(user));
 		localStorage.setItem("loginTime", Date.now().toString());
 		localStorage.setItem("lastActivity", Date.now().toString());
+		localStorage.setItem("permissions", JSON.stringify(user.permissions));
 	};
 
 	const logout = () => {
 		setToken(null);
 		setUser(null);
-		localStorage.removeItem("token");
-		localStorage.removeItem("user");
-		localStorage.removeItem("loginTime");
-		localStorage.removeItem("lastActivity");
+		localStorage.clear();
 		alert("Tu sesión ha expirado por inactividad. Inicia sesión nuevamente.");
-		window.location.href = "/";
+		window.location.href = PAGES_ROUTES.LOGIN;
 	};
 
 	useEffect(() => {
@@ -89,7 +90,7 @@ export function AuthProvider({ children }) {
 	}, [token]);
 
 	return (
-		<AuthContext.Provider value={{ user, token, login, logout, loading }}>
+		<AuthContext.Provider value={{ user, token, login, logout, loading , Permissions}}>
 			{children}
 
 			{/* Modal simple de advertencia */}

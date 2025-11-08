@@ -5,7 +5,7 @@ import { useAuth } from "../../../store/AuthContext";
 import { useNavigate } from "react-router-dom";
 import PAGES_ROUTES from "../../../routes/routers";
 
-export default function LoginForm() {
+export default function LoginForm({ onForgotPassword }) {
 	const navigate = useNavigate();
 	const { login } = useAuth();
 	const [form, setForm] = useState({ identificador: "", password: "" });
@@ -101,10 +101,14 @@ export default function LoginForm() {
 				)}
 			</button>
 
-			<div className="text-center">
-				<a href="#" className="text-sm text-blue-600 hover:text-blue-500 transition-colors">
+			<div className="text-center pt-4">
+				<button
+					type="button"
+					onClick={onForgotPassword}
+					className="text-[#2068A6] hover:text-[#1a5a8a] font-medium text-sm cursor-pointer"
+				>
 					¿Olvidaste tu contraseña?
-				</a>
+				</button>
 			</div>
 		</form>
 	);

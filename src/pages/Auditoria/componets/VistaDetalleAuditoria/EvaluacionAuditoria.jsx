@@ -1,13 +1,13 @@
 import React from "react";
 import {
 	CheckCircle,
-	XCircle,
 	AlertCircle,
-	BarChart3,
 	Award,
 	ClipboardList,
-	TrendingUp
+	TrendingUp,
+	MessageCircle
 } from 'lucide-react';
+
 
 const EvaluacionAuditoria = ({ data = [] }) => {
 	// Agrupar por dimensionNombre
@@ -65,8 +65,8 @@ const EvaluacionAuditoria = ({ data = [] }) => {
 										</span>
 									</div>
 									<div className={`px-3 py-1 rounded-full text-xs font-medium ${dimension.porcentaje >= 90 ? 'bg-green-100 text-green-800' :
-											dimension.porcentaje >= 70 ? 'bg-yellow-100 text-yellow-800' :
-												'bg-red-100 text-red-800'
+										dimension.porcentaje >= 70 ? 'bg-yellow-100 text-yellow-800' :
+											'bg-red-100 text-red-800'
 										}`}>
 										{dimension.porcentaje}% cumplimiento
 									</div>
@@ -79,42 +79,63 @@ const EvaluacionAuditoria = ({ data = [] }) => {
 							{dimension.criterios.map((crit, idx) => (
 								<div
 									key={idx}
-									className={`flex flex-col md:flex-row justify-between items-start md:items-center px-6 py-4 transition-colors duration-200 ${crit.puntaje === 1
-											? "bg-green-50/50 hover:bg-green-50"
-											: "bg-red-50/50 hover:bg-red-50"
+									className={`px-6 py-4 transition-colors duration-200 ${crit.puntaje === 1
+										? "bg-green-50/50 hover:bg-green-50"
+										: "bg-red-50/50 hover:bg-red-50"
 										}`}
 								>
-									{/* Descripción del criterio */}
-									<div className="flex items-start gap-3 mb-3 md:mb-0 md:w-4/5">
-										{crit.puntaje === 1 ? (
-											<CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-										) : (
-											<XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-										)}
-										<p className="text-gray-700 leading-relaxed">
-											{crit.criterioDescripcion}
-										</p>
-									</div>
+									<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+										{/* Icono y descripción */}
+										<div className="flex items-start gap-3 flex-1">
+											{crit.puntaje === 1 ? (
+												<CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+											) : (
+												<XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+											)}
+											<div className="flex-1">
+												<p className="text-gray-700 leading-relaxed mb-2">
+													{crit.criterioDescripcion}
+												</p>
 
-									{/* Puntaje */}
-									<div className="flex items-center gap-2">
-										<div
-											className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold ${crit.puntaje === 1
+												{/* Observaciones con diseño de cita */}
+												{crit.respuestaObservaciones && (
+													<div className="border-l-4 border-blue-200 bg-blue-50/50 rounded-r-lg p-3">
+														<div className="flex items-start gap-2">
+															<MessageCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+															<div>
+																<span className="text-xs font-medium text-blue-700 uppercase tracking-wide">
+																	Observaciones
+																</span>
+																<p className="text-gray-700 text-sm mt-1">
+																	{crit.respuestaObservaciones}
+																</p>
+															</div>
+														</div>
+													</div>
+												)}
+											</div>
+										</div>
+
+										{/* Puntaje */}
+										<div className="flex items-center gap-2 mt-3 md:mt-0">
+											<div
+												className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold ${crit.puntaje === 1
 													? "bg-green-100 text-green-800 border border-green-200"
 													: "bg-red-100 text-red-800 border border-red-200"
-												}`}
-										>
-											{crit.puntaje === 1 ? (
-												<>
-													<CheckCircle className="w-4 h-4" />
-													Cumple
-												</>
-											) : (
-												<>
-													<XCircle className="w-4 h-4" />
-													No cumple
-												</>
-											)}
+													}`}
+											>
+												{crit.puntaje === 1 ? (
+													<>
+														<CheckCircle className="w-4 h-4" />
+														Cumple
+													</>
+												) : (
+													<>
+														<XCircle className="w-4 h-4" />
+														No cumple
+													</>
+												)}
+											</div>
 										</div>
 									</div>
 								</div>

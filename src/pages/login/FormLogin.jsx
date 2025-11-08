@@ -1,10 +1,14 @@
 import { Stethoscope } from "lucide-react";
 import fondo from "../../../public/fondo.png";
 import LoginForm from "./componets/LoginForm";
+import ForgotPasswordForm from "./componets/ForgotPasswordForm"; // Nuevo componente
 import Footer from "./componets/Foother";
 import logoIpsch from "../../../public/ipsch.png";
+import { useState } from "react";
 
 export function FormLogin() {
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
   return (
     <div className="min-h-screen flex">
       <div className="flex-1 flex items-center justify-center px-8 bg-white relative">
@@ -25,12 +29,24 @@ export function FormLogin() {
                 <Stethoscope size={32} />
               </div>
               <div className="text-left">
-                <h1 className="text-3xl font-bold text-gray-900">Auditoria</h1>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  {showForgotPassword ? "Recuperar Contraseña" : "Auditoria"}
+                </h1>
                 <p className="text-gray-500 text-sm">Sistema de Auditorías Médicas</p>
               </div>
             </div>
           </div>
-          <LoginForm />
+          
+          {showForgotPassword ? (
+            <ForgotPasswordForm 
+              onBackToLogin={() => setShowForgotPassword(false)} 
+            />
+          ) : (
+            <LoginForm 
+              onForgotPassword={() => setShowForgotPassword(true)} 
+            />
+          )}
+          
           <Footer />
         </div>
       </div>
