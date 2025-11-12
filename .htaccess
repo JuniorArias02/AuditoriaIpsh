@@ -1,8 +1,0 @@
-# Habilitar RewriteEngine
-RewriteEngine On
-RewriteBase /
-
-# Si el archivo o directorio no existe, redirigir a index.html
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]

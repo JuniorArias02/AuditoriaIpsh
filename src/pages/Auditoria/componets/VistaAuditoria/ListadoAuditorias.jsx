@@ -4,6 +4,9 @@ import { useAuth } from "../../../../store/AuthContext";
 import { AuditoriaServices } from "../../../../api/services/auditoriaServices";
 import { useNavigate } from "react-router-dom";
 import PAGES_ROUTES from "../../../../routes/routers";
+import getClasificacion from "./getClasificacion";
+import Swal from "sweetalert2";
+
 const ListadoAuditorias = ({ auditoriasExternas }) => {
   const navigate = useNavigate();
   const { token } = useAuth();
@@ -14,17 +17,20 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
 
   useEffect(() => {
     // Si recibimos auditorías filtradas, las mostramos directamente
+    if (!token) return;
+
     if (auditoriasExternas.length > 0) {
       setAuditorias(auditoriasExternas);
       setLoading(false);
       return;
     }
 
-    // Si no hay filtros aplicados, cargamos todas
+
     const obtenerAuditorias = async () => {
       try {
+        const service = new AuditoriaServices(token);
         const res = await auditoriaServices.listarAuditorias();
-        setAuditorias(res || []);
+        setAuditorias(res.data || []);
       } catch (err) {
         console.error(err);
         setError("Error al cargar auditorías");
@@ -34,15 +40,45 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
     };
 
     obtenerAuditorias();
-  }, [auditoriasExternas]);
+  }, [token, auditoriasExternas]);
 
-  const getClasificacion = (porcentaje) => {
-    const valor = parseFloat(porcentaje);
-    if (valor >= 95)
-      return { label: "Satisfactoria", icon: <CheckCircle className="w-4 h-4 text-green-600" />, classes: "border-green-300 text-green-700 bg-green-50" };
-    if (valor >= 85)
-      return { label: "Aceptable", icon: <MinusCircle className="w-4 h-4 text-yellow-600" />, classes: "border-yellow-300 text-yellow-700 bg-yellow-50" };
-    return { label: "Inaceptable", icon: <AlertCircle className="w-4 h-4 text-red-600" />, classes: "border-red-300 text-red-700 bg-red-50" };
+
+  const handleEliminarAuditoria = async (auditoria) => {
+    const confirm = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: `Se eliminará la auditoría #${auditoria.id}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    });
+
+    if (!confirm.isConfirmed) return;
+
+    try {
+      const res = await auditoriaServices.eliminarAuditoria(auditoria.id);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Eliminada",
+        text: "La auditoría fue eliminada correctamente",
+        timer: 1800,
+        showConfirmButton: false,
+      });
+
+      setAuditorias((prev) => prev.filter((a) => a.id !== auditoria.id));
+    } catch (err) {
+      const errorMsg = err.response?.data?.error || "Error al eliminar auditoría";
+
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: errorMsg,
+        confirmButtonColor: "#3085d6",
+      });
+    }
   };
 
   if (loading) {
@@ -167,13 +203,14 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
                         >
                           <Eye className="w-4 h-4" />
                         </button>
-                        <button
+                        {/* <button
                           className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors duration-150"
                           title="Editar"
                         >
                           <Edit className="w-4 h-4" />
-                        </button>
+                        </button> */}
                         <button
+                          onClick={() => handleEliminarAuditoria(a)}
                           className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-150"
                           title="Eliminar"
                         >

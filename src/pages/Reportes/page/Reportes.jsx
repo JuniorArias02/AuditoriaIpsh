@@ -62,7 +62,8 @@ function Reportes() {
     try {
       const res = await auditoriaServices.obtenerReportesAuditorias();
       console.log(res);
-      setDatos(res);
+      setDatos(res.data);
+
     } catch (error) {
       console.error("Error obteniendo reportes:", error);
     }
@@ -72,7 +73,7 @@ function Reportes() {
     try {
       const res = await auditoriaServices.obtenerResumenMensual(filtroFecha);
       console.log(res);
-      setDatosResumen(res);
+      setDatosResumen(res.data);
     } catch (error) {
       console.error("Error obteniendo reportes:", error);
     }

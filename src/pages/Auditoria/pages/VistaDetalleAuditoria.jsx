@@ -18,14 +18,15 @@ function VistaDetalleAuditoria() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (!auditoriaBase?.id) return;
+		if (!auditoriaBase?.id || !token) return;
 
 		const fetchData = async () => {
+			setLoading(true);
 			try {
 				const detalle = await auditoriaService.detalleAuditoria(auditoriaBase.id);
 				const evaluacionData = await auditoriaService.detalleAuditoriaEvaluacion(auditoriaBase.id);
-				setDetalleAuditoria(detalle);
-				setEvaluacion(evaluacionData);
+				setDetalleAuditoria(detalle.data);
+				setEvaluacion(evaluacionData.data);
 			} catch (error) {
 				console.error("Error cargando detalle de auditoría:", error);
 			} finally {
@@ -34,14 +35,15 @@ function VistaDetalleAuditoria() {
 		};
 
 		fetchData();
-	}, [auditoriaBase?.id]);
+	}, [auditoriaBase?.id, token]);
+
 
 	const handleDescargar = () => {
 		console.log("Descargando auditoría:", auditoriaBase.id);
 	};
 
 	const handleRegresar = () => {
-		navigate(-1); 
+		navigate(-1);
 	};
 
 	if (loading) return <p className="p-6 text-gray-500">Cargando detalle...</p>;
