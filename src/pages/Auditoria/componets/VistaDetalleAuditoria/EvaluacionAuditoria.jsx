@@ -5,7 +5,8 @@ import {
 	Award,
 	ClipboardList,
 	TrendingUp,
-	MessageCircle
+	MessageCircle,
+	XCircle
 } from 'lucide-react';
 
 
