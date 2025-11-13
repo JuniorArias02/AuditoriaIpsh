@@ -14,7 +14,7 @@ const MetricaCalidad = ({ mostrarAlerta = true }) => {
 				setLoading(true);
 				setError(null);
 				const data = await AuditoriaServices.obtenerMetricasCalidad();
-				setMetricas(data);
+				setMetricas(data.data);
 			} catch (err) {
 				console.error("Error al cargar métricas:", err);
 				setError("No se pudieron cargar las métricas");
