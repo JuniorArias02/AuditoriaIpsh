@@ -5,7 +5,7 @@ import { useAuth } from "../../../store/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuditoriaServices } from "../../../api/services/auditoriaServices";
 import EvaluacionAuditoria from "../componets/VistaDetalleAuditoria/EvaluacionAuditoria"
-import { Download, ArrowLeft } from "lucide-react";
+import { Download, ArrowLeft} from "lucide-react";
 
 function VistaDetalleAuditoria() {
 	const { token } = useAuth();
