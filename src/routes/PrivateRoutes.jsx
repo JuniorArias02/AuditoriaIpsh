@@ -11,7 +11,7 @@ import VistaFormulariosAuditorias from "../pages/formulario/page/VistaFormulario
 import EditarFormulario from "../pages/formulario/page/EditarFormulario";
 import Configuracion from "../pages/configuracion/page/Configuracion";
 import Sedes from "../pages/sedes/page/Sedes";
-import Profesional from "../pages/profesionales/page/Profesional";
+import Profesional from "../pages/profesionales/page/VistaProfesional";
 import Reportes from "../pages/Reportes/page/Reportes";
 export const privateRoutes = [
 	{

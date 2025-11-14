@@ -38,7 +38,7 @@ function EditarFormulario() {
             try {
                 setLoading(true);
                 const data = await formularioService.obtenerFormularioAuditoriaPorId(id);
-                setFormulario(data);
+                setFormulario(data.data);
             } catch (error) {
                 console.error("Error fetching form:", error);
             } finally {

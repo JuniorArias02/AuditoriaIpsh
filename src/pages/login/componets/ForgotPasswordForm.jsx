@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { ArrowLeft, Mail, Shield, Lock, CheckCircle, Eye, EyeOff, Check, CircleAlert } from 'lucide-react';
+import { UsuariosServices } from '../../../api/services/usuariosServices';
+import { CodigoVerificacionServices } from '../../../api/services/codigoVerificacionServices';
 
 export default function ForgotPasswordForm({ onBackToLogin }) {
+  const usuarioService = new UsuariosServices();
+  const codigoVerificacionService = new CodigoVerificacionServices();
   const [step, setStep] = useState('email');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -10,27 +14,50 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [usuarioId, setUsuarioId] = useState(null);
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    try {
+      const res = await usuarioService.validarUsuario({ identificador: email });
 
-    // Simular envío de código
-    setTimeout(() => {
+      if (res.success) {
+        setUsuarioId(res.token);
+        setStep('code');
+      } else {
+        console.log("Error:", res.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
       setIsLoading(false);
-      setStep('code');
-    }, 1500);
+    }
   };
+
+
 
   const handleSubmitCode = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simular verificación de código
-    setTimeout(() => {
+    try {
+      const res = await codigoVerificacionService.validarCodigo({
+        token: usuarioId,
+        codigo: code
+      });
+
+      if (res.success) {
+        setUsuarioId(res.token);
+        setStep('newPassword');
+      } else {
+        console.log("Error:", res.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
       setIsLoading(false);
-      setStep('newPassword');
-    }, 1500);
+    }
   };
 
   const handleSubmitNewPassword = async (e) => {
@@ -43,12 +70,24 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
 
     setIsLoading(true);
 
-    // Simular actualización de contraseña
-    setTimeout(() => {
+    try {
+      const res = await usuarioService.cambiarContrasena({
+        token_final: usuarioId,
+        new_password: newPassword
+      });
+
+      if (res.success) {
+        setStep('success');
+      } else {
+        console.log("Error:", res.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
       setIsLoading(false);
-      setStep('success');
-    }, 1500);
+    }
   };
+
 
   const ProgressBar = () => (
     <div className="mb-8">
@@ -121,18 +160,19 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="identificador" className="block text-sm font-medium text-gray-700 mb-2">
               Correo Electrónico
             </label>
             <input
-              id="email"
-              type="email"
+              id="identificador"
+              type="text"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-all"
-              placeholder="usuario@ejemplo.com"
+              placeholder="Correo o usuario"
             />
+
           </div>
 
           <div className="flex gap-3">

@@ -22,4 +22,15 @@ export class UsuariosServices {
 		return res.data;
 	}
 
+	async validarUsuario(form) {
+		const res = await axios.post(USUARIOS.VALIDAR_USUARIO, form);
+		return res.data;
+	}
+
+	async cambiarContrasena(form) {
+		const res = await axios.patch(USUARIOS.CAMBIAR_CONTRASENA, form);
+		return res.data;
+	}
+
+
 }

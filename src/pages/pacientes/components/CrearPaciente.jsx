@@ -36,7 +36,7 @@ function CrearPaciente() {
 	const cargarEps = async () => {
 		try {
 			const res = await epsService.listarEps();
-			setEpsList(res);
+			setEpsList(res.data);
 		} catch (err) {
 			console.error("Error cargando EPS:", err);
 		}
@@ -95,7 +95,7 @@ function CrearPaciente() {
 			Swal.fire({
 				icon: "error",
 				title: "Error",
-				text: error.response?.data?.message || error.message,
+				text: error.response?.data?.error || error.message,
 				confirmButtonColor: "#2068A6"
 			});
 		} finally {

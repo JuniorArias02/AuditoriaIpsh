@@ -5,7 +5,8 @@ import {
 	Building,
 	Stethoscope,
 	FileText,
-	UserCheck
+	UserCheck,
+	
 } from "lucide-react";
 
 const InformacionGeneral = ({ data }) => {
