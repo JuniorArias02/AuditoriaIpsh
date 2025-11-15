@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ArrowLeft, Mail, Shield, Lock, CheckCircle, Eye, EyeOff, Check, CircleAlert } from 'lucide-react';
 import { UsuariosServices } from '../../../api/services/usuariosServices';
 import { CodigoVerificacionServices } from '../../../api/services/codigoVerificacionServices';
+import Swal from 'sweetalert2';
+
 
 export default function ForgotPasswordForm({ onBackToLogin }) {
   const usuarioService = new UsuariosServices();
@@ -19,21 +21,46 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
     try {
       const res = await usuarioService.validarUsuario({ identificador: email });
 
       if (res.success) {
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario encontrado',
+          text: 'Te enviamos un código de verificación al correo.',
+          confirmButtonText: 'Continuar'
+        });
+
         setUsuarioId(res.token);
         setStep('code');
+
       } else {
-        console.log("Error:", res.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Correo no válido',
+          text: res.message || 'No encontramos un usuario con ese correo.',
+        });
+
       }
     } catch (error) {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error interno',
+        text: 'Hubo un fallo procesando la solicitud.',
+      });
+
       console.error("Error:", error);
+
     } finally {
       setIsLoading(false);
     }
   };
+
 
 
 
@@ -48,23 +75,51 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       });
 
       if (res.success) {
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Código validado',
+          text: 'Ahora puedes crear tu nueva contraseña.',
+          confirmButtonText: 'Continuar'
+        });
+
         setUsuarioId(res.token);
         setStep('newPassword');
+
       } else {
-        console.log("Error:", res.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Código incorrecto',
+          text: res.message || 'El código no coincide, intenta de nuevo.',
+        });
+
       }
     } catch (error) {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error interno',
+        text: 'Hubo un problema con la verificación. Intenta más tarde.',
+      });
+
       console.error("Error:", error);
+
     } finally {
       setIsLoading(false);
     }
   };
 
+
   const handleSubmitNewPassword = async (e) => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Contraseñas diferentes',
+        text: 'Las contraseñas no coinciden, revisa y vuelve a intentar.',
+      });
       return;
     }
 
@@ -77,16 +132,40 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       });
 
       if (res.success) {
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Contraseña actualizada',
+          text: 'Tu contraseña se cambió correctamente.',
+          confirmButtonText: 'Perfecto'
+        });
+
         setStep('success');
+
       } else {
-        console.log("Error:", res.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo cambiar la contraseña',
+          text: res.message || 'Inténtalo de nuevo más tarde.',
+        });
+
       }
     } catch (error) {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error interno',
+        text: 'Hubo un problema con el servidor.',
+      });
+
       console.error("Error:", error);
+
     } finally {
       setIsLoading(false);
     }
   };
+
 
 
   const ProgressBar = () => (
