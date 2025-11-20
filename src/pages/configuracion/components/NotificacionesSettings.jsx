@@ -9,6 +9,7 @@ function NotificacionesSettings() {
 
   useEffect(() => {
     const load = async () => {
+      if (!token) return;
       try {
         const service = new SettingServices(token);
         const data = await service.obtenerConfigNotificacion();

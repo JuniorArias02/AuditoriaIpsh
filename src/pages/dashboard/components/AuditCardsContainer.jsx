@@ -15,7 +15,7 @@ export function AuditCardsContainer() {
     const fetchInforme = async () => {
       try {
         const res = await AuditoriaServices.obtenerInformeAuditoria();
-        setData(res);
+        setData(res.data);
       } catch (error) {
         console.error("Error al obtener informe de auditoría:", error);
       }
