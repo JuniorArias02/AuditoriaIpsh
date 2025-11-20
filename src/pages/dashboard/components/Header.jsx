@@ -14,7 +14,7 @@ export function Header() {
 	});
 
 	return (
-		<header className="text-white p-6 shadow-lg rounded-lg bg-[#1B65A6] mt-5">
+		<header className="p-6 shadow-lg rounded-lg bg-[#1B65A6] dark:bg-gray-800 text-white dark:text-white mt-5">
 			<div className="max-w-7xl mx-auto flex justify-between items-center">
 				<div>
 					<h1 className="text-2xl font-semibold">

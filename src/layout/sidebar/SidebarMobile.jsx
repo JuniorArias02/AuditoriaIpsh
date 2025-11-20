@@ -9,13 +9,13 @@ export default function SidebarMobile({ open, setOpen }) {
 		<div className="md:hidden">
 			<button
 				onClick={() => setOpen(!open)}
-				className="p-3 fixed top-3 left-3 z-50 bg-white rounded-full shadow"
+				className="p-3 fixed top-3 left-3 z-50 bg-white dark:bg-gray-800 rounded-full shadow dark:shadow-gray-900"
 			>
-				{open ? <X /> : <Menu />}
+				{open ? <X className="text-gray-900 dark:text-white" /> : <Menu className="text-gray-900 dark:text-white" />}
 			</button>
 
 			<div
-				className={`fixed top-0 left-0 h-full bg-white shadow-lg z-40 transition-transform duration-300 ${
+				className={`fixed top-0 left-0 h-full bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 z-40 transition-transform duration-300 ${
 					open ? "translate-x-0" : "-translate-x-full"
 				}`}
 			>
@@ -27,8 +27,8 @@ export default function SidebarMobile({ open, setOpen }) {
 							onClick={() => setOpen(false)} // cierra el menú al navegar
 							className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
 								location.pathname === path
-									? "bg-[#2B6DA6] text-white"
-									: "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+									? "bg-[#2B6DA6] dark:bg-blue-600 text-white"
+									: "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
 							}`}
 						>
 							<Icon size={20} />
@@ -40,7 +40,7 @@ export default function SidebarMobile({ open, setOpen }) {
 
 			{open && (
 				<div
-					className="fixed inset-0 bg-black/40 z-30"
+					className="fixed inset-0 bg-black/40 dark:bg-black/60 z-30"
 					onClick={() => setOpen(false)}
 				></div>
 			)}

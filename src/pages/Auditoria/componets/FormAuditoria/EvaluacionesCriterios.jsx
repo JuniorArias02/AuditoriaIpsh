@@ -120,25 +120,25 @@ function EvaluacionesCriterios({ onPuntajeChange, formulario_auditoria_id }) {
 	return (
 		<div className="mt-5">
 			{/* Header */}
-			<div className="sticky top-0 z-50 bg-white rounded-b-2xl shadow-md border-b border-gray-200 p-6 mb-6">
+			<div className="sticky top-0 z-50 bg-white dark:bg-gray-800 rounded-b-2xl shadow-md dark:shadow-gray-900 border-b border-gray-200 dark:border-gray-700 p-6 mb-6">
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-4">
-						<div className="bg-blue-100 p-3 rounded-xl">
-							<FileText className="w-8 h-8 text-blue-600" />
+						<div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-xl">
+							<FileText className="w-8 h-8 text-blue-600 dark:text-blue-400" />
 						</div>
 						<div>
-							<h1 className="text-2xl font-bold text-gray-900">Evaluación de Criterios</h1>
-							<p className="text-gray-600 mt-1">Califique cada criterio según los estándares</p>
+							<h1 className="text-2xl font-bold text-gray-900 dark:text-white">Evaluación de Criterios</h1>
+							<p className="text-gray-600 dark:text-gray-400 mt-1">Califique cada criterio según los estándares</p>
 						</div>
 					</div>
 
 					{/* Puntaje */}
 					<div className="text-right">
-						<div className="flex items-center gap-2 text-lg font-bold text-gray-900">
-							<Calculator className="w-5 h-5 text-blue-600" />
+						<div className="flex items-center gap-2 text-lg font-bold text-gray-900 dark:text-white">
+							<Calculator className="w-5 h-5 text-blue-600 dark:text-blue-400" />
 							Puntaje: {puntajeTotal.toFixed(2)}/{puntajeMaximo.toFixed(2)}
 						</div>
-						<div className="text-2xl font-bold text-blue-600 mt-1">
+						<div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">
 							{porcentajeCumplimiento.toFixed(1)}%
 						</div>
 						<div className={`text-sm font-medium px-2 py-1 rounded-full ${nivelCumplimiento.bg} ${nivelCumplimiento.color}`}>
@@ -157,20 +157,20 @@ function EvaluacionesCriterios({ onPuntajeChange, formulario_auditoria_id }) {
 					const porcentajeDim = maximoDimension > 0 ? (cumple / maximoDimension) * 100 : 0;
 
 					return (
-						<div key={dim.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-							<div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between">
+						<div key={dim.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm dark:shadow-none border border-gray-200 dark:border-gray-700 overflow-hidden">
+							<div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 px-6 py-4 flex justify-between">
 								<div className="flex items-center gap-3">
 									<div className="bg-white/20 p-2 rounded-lg">
 										<span className="text-white font-bold text-lg">{dim.orden}</span>
 									</div>
 									<div>
 										<h2 className="text-xl font-bold text-white">{dim.nombre}</h2>
-										<p className="text-blue-100 text-sm mt-1">{dim.criterios.length} criterios</p>
+										<p className="text-blue-100 dark:text-blue-200 text-sm mt-1">{dim.criterios.length} criterios</p>
 									</div>
 								</div>
 								<div className="text-right text-white font-bold">
 									{cumple}/{maximoDimension}
-									<div className="text-blue-200 text-sm">
+									<div className="text-blue-200 dark:text-blue-300 text-sm">
 										{porcentajeDim.toFixed(1)}%
 									</div>
 								</div>

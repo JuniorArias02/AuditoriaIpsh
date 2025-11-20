@@ -4,13 +4,11 @@ import PAGES_ROUTES from "../../routes/routers";
 export const sidebarMenus = [
   { name: "Dashboard", icon: LayoutDashboard, path: PAGES_ROUTES.DASHBOARD },
   { name: "Nueva Auditoría", icon: FilePlus2, path: PAGES_ROUTES.AUDITORIA.NUEVA_AUDITORIA },
-  { name: "Formulario Auditoria", icon: Newspaper, path: PAGES_ROUTES.FORMULARIO.CREAR },
-  { name: "Formularios", icon: Stethoscope, path: PAGES_ROUTES.FORMULARIO.ROOT },
+  { name: "Gestionar Formularios", icon: Stethoscope, path: PAGES_ROUTES.FORMULARIO.ROOT },
   { name: "Auditorías", icon: ClipboardList, path: "/auditorias" },
   { name: "Reportes", icon: BarChart3, path: PAGES_ROUTES.REPORTES.ROOT },
   { name: "Profesionales", icon: Users, path: PAGES_ROUTES.PROFESIONAL.ROOT },
   { name: "Pacientes", icon: Stethoscope, path: PAGES_ROUTES.PACIENTE.ROOT },
-  { name: "Sedes", icon: Building2, path: PAGES_ROUTES.SEDES.ROOT },
   { name: "Usuarios", icon: Contact, path: PAGES_ROUTES.USUARIO.ROOT },
   { name: "Configuración", icon: Settings, path: PAGES_ROUTES.CONFIGURACION.ROOT },
 ];

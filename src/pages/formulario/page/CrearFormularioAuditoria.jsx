@@ -118,18 +118,18 @@ function CrearFormularioAuditoria() {
 	const totalPorcentaje = formulario.dimensiones.reduce((sum, d) => sum + d.porcentaje, 0);
 
 	return (
-		<div className="min-h-screen">
+		<div className="min-h-screen bg-gray-50 dark:bg-gray-900">
 			<div className="max-w-7xl mx-auto">
 				{/* Header */}
-				<div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+				<div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900 p-6 mb-6">
 					<div className="flex items-center gap-3 mb-4">
-						<FolderOpen className="text-indigo-600" size={32} />
-						<h1 className="text-2xl font-bold text-gray-800">Crear Formulario de Auditoría</h1>
+						<FolderOpen className="text-indigo-600 dark:text-indigo-400" size={32} />
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-white">Crear Formulario de Auditoría</h1>
 					</div>
 
 					{/* Nombre del formulario */}
 					<div className="mb-4">
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
 							Nombre del formulario
 						</label>
 						<input
@@ -137,13 +137,13 @@ function CrearFormularioAuditoria() {
 							placeholder="Ej: Auditoría de Calidad Web 2024"
 							value={formulario.nombre_formulario}
 							onChange={(e) => setFormulario({ ...formulario, nombre_formulario: e.target.value })}
-							className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+							className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
 						/>
 					</div>
 
 					{/* Descripción */}
 					<div className="mb-4">
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
 							Descripción
 						</label>
 						<textarea
@@ -151,30 +151,30 @@ function CrearFormularioAuditoria() {
 							value={formulario.descripcion}
 							onChange={(e) => setFormulario({ ...formulario, descripcion: e.target.value })}
 							rows={3}
-							className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+							className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none"
 						/>
 					</div>
 				</div>
 
 				{/* Dimensiones Section */}
-				<div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+				<div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900 p-6 mb-6">
 					<div className="flex items-center justify-between mb-6">
 						<div className="flex items-center gap-3">
-							<Layers className="text-indigo-600" size={24} />
-							<h2 className="text-xl font-semibold text-gray-800">Dimensiones</h2>
-							<span className="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-sm font-medium">
+							<Layers className="text-indigo-600 dark:text-indigo-400" size={24} />
+							<h2 className="text-xl font-semibold text-gray-800 dark:text-white">Dimensiones</h2>
+							<span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-2 py-1 rounded-full text-sm font-medium">
 								{formulario.dimensiones.length}
 							</span>
 						</div>
 
 						{/* Total Percentage */}
 						<div className="flex items-center gap-2">
-							<span className="text-sm text-gray-600">Total:</span>
+							<span className="text-sm text-gray-600 dark:text-gray-400">Total:</span>
 							<span className={`px-3 py-1 rounded-full text-sm font-medium ${totalPorcentaje > 100
-									? "bg-red-100 text-red-800"
-									: totalPorcentaje === 100
-										? "bg-green-100 text-green-800"
-										: "bg-yellow-100 text-yellow-800"
+								? "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300"
+								: totalPorcentaje === 100
+									? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
+									: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300"
 								}`}>
 								{totalPorcentaje}%
 							</span>
@@ -184,7 +184,7 @@ function CrearFormularioAuditoria() {
 					{/* Agregar Dimensión Button */}
 					<button
 						onClick={agregarDimension}
-						className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded-lg transition-all duration-200 mb-6"
+						className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-all duration-200 mb-6"
 					>
 						<Plus size={20} />
 						Agregar Dimensión
@@ -211,14 +211,14 @@ function CrearFormularioAuditoria() {
 				<button
 					onClick={handleSubmit}
 					disabled={totalPorcentaje !== 100}
-					className="flex items-center gap-2 w-full justify-center bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-6 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg"
+					className="flex items-center gap-2 w-full justify-center bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg"
 				>
 					<Save size={20} />
 					Guardar Formulario de Auditoría
 				</button>
 
 				{totalPorcentaje !== 100 && (
-					<div className="flex items-center gap-2 justify-center mt-3 text-yellow-600 text-sm">
+					<div className="flex items-center gap-2 justify-center mt-3 text-yellow-600 dark:text-yellow-400 text-sm">
 						<Info size={16} />
 						El total debe ser exactamente 100% para guardar
 					</div>

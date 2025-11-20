@@ -159,19 +159,19 @@ function FormAuditoria() {
 				<div className="mb-8">
 					<button
 						onClick={handleCancel}
-						className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4 transition-colors"
+						className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 mb-4 transition-colors"
 					>
 						<ArrowLeft className="w-4 h-4" />
 						Volver
 					</button>
 
 					<div className="flex items-center gap-3">
-						<div className="bg-blue-100 p-3 rounded-xl">
-							<PlusCircle className="w-8 h-8 text-blue-600" />
+						<div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-xl">
+							<PlusCircle className="w-8 h-8 text-blue-600 dark:text-blue-400" />
 						</div>
 						<div>
-							<h1 className="text-2xl font-bold text-gray-900">Nueva Auditoría</h1>
-							<p className="text-gray-600 mt-1">Complete la información para crear una nueva auditoría de historia clínica</p>
+							<h1 className="text-2xl font-bold text-gray-900 dark:text-white">Nueva Auditoría</h1>
+							<p className="text-gray-600 dark:text-gray-400 mt-1">Complete la información para crear una nueva auditoría de historia clínica</p>
 						</div>
 					</div>
 				</div>
@@ -183,11 +183,11 @@ function FormAuditoria() {
 						formulario_auditoria_id={form.formulario_auditoria_id}
 						onPuntajeChange={handlePuntajeChange}
 					/>
-					<div className="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-gray-200">
+					<div className="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-gray-200 dark:border-gray-700">
 						<button
 							type="button"
 							onClick={handleCancel}
-							className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+							className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors font-medium"
 							disabled={loading}
 						>
 							Cancelar
@@ -196,7 +196,7 @@ function FormAuditoria() {
 						<button
 							type="submit"
 							disabled={loading}
-							className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+							className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							{loading ? (
 								<>

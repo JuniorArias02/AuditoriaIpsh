@@ -99,27 +99,26 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
   }
 
   return (
-    <div className="p-6 bg-gray-50 h-full max-h-9/10 bg-white rounded-lg
-    ">
+    <div className="p-6 bg-gray-50 dark:bg-gray-900 h-full max-h-9/10 bg-white dark:bg-gray-800 rounded-lg">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
         <div className="flex items-center mb-4 sm:mb-0">
-          <div className="p-2 bg-blue-50 rounded-lg border border-blue-100 mr-3">
-            <FileText className="w-6 h-6 text-blue-600" />
+          <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-100 dark:border-blue-800 mr-3">
+            <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">Lista de Auditorías</h1>
-            <p className="text-sm text-gray-500 mt-1">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Lista de Auditorías</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {auditorias.length} auditoría{auditorias.length !== 1 ? 's' : ''} registrada{auditorias.length !== 1 ? 's' : ''}
             </p>
           </div>
         </div>
 
         <div className="flex space-x-3">
-          {/* <button className="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          {/* <button className="flex items-center px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
             <Filter className="w-4 h-4 mr-2" />
             Filtrar
           </button> */}
-          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          <button className="flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors">
             <Download className="w-4 h-4 mr-2" />
             Exportar
           </button>
@@ -127,14 +126,14 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
       </div>
 
       {/* Tabla */}
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden border border-gray-200 dark:border-gray-700">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
               {["Paciente", "Fecha Auditoría", "Auditor", "Servicio", "Puntaje", "Clasificación", "Acciones"].map((header) => (
                 <th
                   key={header}
-                  className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b border-gray-200"
+                  className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider border-b border-gray-200 dark:border-gray-600"
                 >
                   {header}
                 </th>
@@ -142,45 +141,45 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-100 bg-white">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-700 bg-white dark:bg-gray-800">
             {auditorias.length === 0 ? (
               <tr>
-                <td colSpan="7" className="text-center py-12 text-gray-500">
-                  <FileText className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-                  <p className="text-lg font-medium text-gray-400">No hay auditorías registradas</p>
-                  <p className="text-sm text-gray-500 mt-1">Las auditorías aparecerán aquí una vez creadas</p>
+                <td colSpan="7" className="text-center py-12 text-gray-500 dark:text-gray-400">
+                  <FileText className="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" />
+                  <p className="text-lg font-medium text-gray-400 dark:text-gray-500">No hay auditorías registradas</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Las auditorías aparecerán aquí una vez creadas</p>
                 </td>
               </tr>
             ) : (
               auditorias.map((a) => {
                 const clasificacion = getClasificacion(a.porcentaje_cumplimiento);
                 return (
-                  <tr key={a.id} className="hover:bg-gray-50/80 transition-colors duration-150">
+                  <tr key={a.id} className="hover:bg-gray-50/80 dark:hover:bg-gray-700/80 transition-colors duration-150">
                     {/* Paciente */}
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-900">{a.pacienteNombre}</div>
-                      <div className="text-xs text-gray-500 mt-1">Doc: {a.pacienteDocumento}</div>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">{a.pacienteNombre}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Doc: {a.pacienteDocumento}</div>
                     </td>
 
                     {/* Fecha */}
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-900">{a.fecha_auditoria}</div>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">{a.fecha_auditoria}</div>
                     </td>
 
                     {/* Auditor */}
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-900">{a.auditor}</div>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">{a.auditor}</div>
                     </td>
 
                     {/* Servicio */}
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-900">{a.servicioAuditar}</div>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">{a.servicioAuditar}</div>
                     </td>
 
                     {/* Puntaje */}
                     <td className="px-6 py-4">
-                      <div className="text-sm font-bold text-gray-900">{a.puntaje_total} / {a.total_criterios}</div>
-                      <div className="text-xs text-gray-500">{parseFloat(a.porcentaje_cumplimiento).toFixed(1)}%</div>
+                      <div className="text-sm font-bold text-gray-900 dark:text-white">{a.puntaje_total} / {a.total_criterios}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{parseFloat(a.porcentaje_cumplimiento).toFixed(1)}%</div>
                     </td>
 
                     {/* Clasificación */}
@@ -198,26 +197,26 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
                       <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => navigate(PAGES_ROUTES.AUDITORIA.DETALLE_AUDITORIA, { state: { auditoria: a } })}
-                          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-150"
+                          className="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors duration-150"
                           title="Ver detalle"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         {/* <button
-                          className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors duration-150"
+                          className="p-2 text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-lg transition-colors duration-150"
                           title="Editar"
                         >
                           <Edit className="w-4 h-4" />
                         </button> */}
                         <button
                           onClick={() => handleEliminarAuditoria(a)}
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                          className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors duration-150"
                           title="Eliminar"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                         <button
-                          className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-150"
+                          className="p-2 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors duration-150"
                           title="Descargar"
                         >
                           <Download className="w-4 h-4" />

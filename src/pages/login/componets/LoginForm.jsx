@@ -40,7 +40,7 @@ export default function LoginForm({ onForgotPassword }) {
 	return (
 		<form onSubmit={handleSubmit} className="mt-8 space-y-6">
 			{error && (
-				<div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">
+				<div className="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg text-sm">
 					{error}
 				</div>
 			)}
@@ -56,7 +56,7 @@ export default function LoginForm({ onForgotPassword }) {
 						placeholder="Usuario"
 						value={form.identificador}
 						onChange={handleChange}
-						className="block w-full pl-10 pr-3 py-4 border-0 bg-gray-50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200 placeholder-gray-400"
+						className="block w-full pl-10 pr-3 py-4 border-0 bg-gray-50 dark:bg-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white"
 						required
 						disabled={loading}
 					/>
@@ -72,14 +72,14 @@ export default function LoginForm({ onForgotPassword }) {
 						placeholder="Contraseña"
 						value={form.password}
 						onChange={handleChange}
-						className="block w-full pl-10 pr-12 py-4 border-0 bg-gray-50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200 placeholder-gray-400"
+						className="block w-full pl-10 pr-12 py-4 border-0 bg-gray-50 dark:bg-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white"
 						required
 						disabled={loading}
 					/>
 					<button
 						type="button"
 						onClick={() => setShowPassword(!showPassword)}
-						className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+						className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
 					>
 						{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
 					</button>
@@ -89,7 +89,7 @@ export default function LoginForm({ onForgotPassword }) {
 			<button
 				type="submit"
 				disabled={loading}
-				className="w-full bg-[#2068A6] text-white py-4 px-4 rounded-xl font-semibold hover:bg-[#1E5C8C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
+				className="w-full bg-[#2068A6] hover:bg-[#1E5C8C] dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-4 px-4 rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
 			>
 				{loading ? (
 					<div className="flex items-center justify-center gap-2">
@@ -105,7 +105,7 @@ export default function LoginForm({ onForgotPassword }) {
 				<button
 					type="button"
 					onClick={onForgotPassword}
-					className="text-[#2068A6] hover:text-[#1a5a8a] font-medium text-sm cursor-pointer"
+					className="text-[#2068A6] hover:text-[#1a5a8a] dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm cursor-pointer"
 				>
 					¿Olvidaste tu contraseña?
 				</button>

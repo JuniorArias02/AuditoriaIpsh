@@ -1,11 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import { CalendarDays } from 'lucide-react';
 import { AuditoriaServices } from '../../../api/services/auditoriaServices';
 
-
 export function ResumenDiarioCards() {
-
 	const [resumenData, setResumenData] = useState({
 		auditoriasHoy: 0,
 		cumplimiento: 0,
@@ -39,19 +36,18 @@ export function ResumenDiarioCards() {
 		fetchResumenDiario();
 	}, []);
 
-
 	if (loading) {
 		return (
-			<div className="bg-white rounded-xl shadow-md p-6 flex justify-center items-center h-40">
-				<div className="w-6 h-6 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mr-3"></div>
-				<p className="text-gray-600">Cargando resumen diario...</p>
+			<div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-none p-6 flex justify-center items-center h-40 border border-gray-100 dark:border-gray-700">
+				<div className="w-6 h-6 border-4 border-blue-400 dark:border-blue-500 border-t-transparent rounded-full animate-spin mr-3"></div>
+				<p className="text-gray-600 dark:text-gray-400">Cargando resumen diario...</p>
 			</div>
 		);
 	}
 
 	if (error) {
 		return (
-			<div className="bg-white rounded-xl shadow-md p-6 text-center text-red-600 border border-red-200">
+			<div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-none p-6 text-center text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800">
 				<p>{error}</p>
 			</div>
 		);
@@ -60,16 +56,16 @@ export function ResumenDiarioCards() {
 	const StatCard = ({ value, label, bgColorClass, valueColorClass }) => (
 		<div className={`p-6 rounded-xl text-center ${bgColorClass}`}>
 			<p className={`text-4xl font-bold ${valueColorClass}`}>{value}</p>
-			<p className="text-sm font-medium text-gray-700 mt-2">{label}</p>
+			<p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-2">{label}</p>
 		</div>
 	);
 
 	return (
-		<div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+		<div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-none overflow-hidden border border-gray-100 dark:border-gray-700">
 			{/* Header */}
-			<div className="flex items-center gap-3 p-5 border-b border-gray-100">
-				<CalendarDays className="w-6 h-6 text-gray-600" />
-				<h2 className="text-xl font-semibold text-gray-800">
+			<div className="flex items-center gap-3 p-5 border-b border-gray-100 dark:border-gray-700">
+				<CalendarDays className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+				<h2 className="text-xl font-semibold text-gray-800 dark:text-white">
 					Resumen Diario
 				</h2>
 			</div>
@@ -79,20 +75,20 @@ export function ResumenDiarioCards() {
 				<StatCard
 					value={resumenData.auditoriasHoy}
 					label="Auditorías de Hoy"
-					bgColorClass="bg-blue-50"
-					valueColorClass="text-blue-600"
+					bgColorClass="bg-blue-50 dark:bg-blue-900/30"
+					valueColorClass="text-blue-600 dark:text-blue-400"
 				/>
 				<StatCard
 					value={resumenData.cumplimiento}
 					label="Criterios por Auditoría"
-					bgColorClass="bg-green-50"
-					valueColorClass="text-green-600"
+					bgColorClass="bg-green-50 dark:bg-green-900/30"
+					valueColorClass="text-green-600 dark:text-green-400"
 				/>
 				<StatCard
 					value={resumenData.puntajeMaximo}
 					label="Puntaje Máximo"
-					bgColorClass="bg-gray-100"
-					valueColorClass="text-gray-800"
+					bgColorClass="bg-gray-100 dark:bg-gray-700"
+					valueColorClass="text-gray-800 dark:text-gray-200"
 				/>
 			</div>
 		</div>

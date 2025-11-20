@@ -23,13 +23,13 @@ const CriterioItem = React.memo(({ criterio, respuesta, onSeleccion, onObservaci
 	const getColorClase = (valor) => {
 		switch (valor) {
 			case 1:
-				return "bg-green-500 border-green-500 text-white";
+				return "bg-green-500 dark:bg-green-600 border-green-500 dark:border-green-600 text-white";
 			case 0:
-				return "bg-yellow-500 border-yellow-500 text-white";
+				return "bg-yellow-500 dark:bg-yellow-600 border-yellow-500 dark:border-yellow-600 text-white";
 			case undefined:
-				return "bg-gray-400 border-gray-400 text-white";
+				return "bg-gray-400 dark:bg-gray-600 border-gray-400 dark:border-gray-600 text-white";
 			default:
-				return "bg-gray-200 border-gray-300 text-gray-600";
+				return "bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300";
 		}
 	};
 
@@ -49,26 +49,26 @@ const CriterioItem = React.memo(({ criterio, respuesta, onSeleccion, onObservaci
 	return (
 		<div
 			className={`p-4 rounded-xl border-2 transition-all ${valor !== undefined
-				? "border-blue-200 bg-blue-50"
-				: "border-gray-100 bg-gray-50"
+				? "border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20"
+				: "border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50"
 				}`}
 		>
 			{/* Descripción */}
 			<div className="flex items-start gap-3 mb-4">
 				<div
 					className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold ${valor !== undefined
-						? "bg-blue-600 text-white"
-						: "bg-gray-300 text-gray-600"
+						? "bg-blue-600 dark:bg-blue-700 text-white"
+						: "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300"
 						}`}
 				>
 					{criterio.orden}
 				</div>
 				<div className="flex-1">
-					<p className="text-gray-800">{criterio.descripcion}</p>
+					<p className="text-gray-800 dark:text-gray-200">{criterio.descripcion}</p>
 					{valor !== undefined && (
 						<div className="flex items-center gap-2 mt-2">
-							<Target className="w-4 h-4 text-blue-600" />
-							<span className="text-sm font-medium text-blue-600">
+							<Target className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+							<span className="text-sm font-medium text-blue-600 dark:text-blue-400">
 								Puntuación: {valor}/1 pts
 							</span>
 						</div>
@@ -89,7 +89,7 @@ const CriterioItem = React.memo(({ criterio, respuesta, onSeleccion, onObservaci
 						onClick={() => onSeleccion(criterio.id, op.valor)}
 						className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 font-medium transition-all ${valor === op.valor
 							? getColorClase(op.valor)
-							: `border-${op.color}-300 text-${op.color}-700 hover:bg-${op.color}-50`
+							: `border-${op.color}-300 dark:border-${op.color}-600 text-${op.color}-700 dark:text-${op.color}-300 hover:bg-${op.color}-50 dark:hover:bg-${op.color}-900/30`
 							}`}
 					>
 						{getIcono(op.valor)}
@@ -100,15 +100,15 @@ const CriterioItem = React.memo(({ criterio, respuesta, onSeleccion, onObservaci
 
 			{/* Observación */}
 			<div>
-				<label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-					<AlertCircle className="w-4 h-4 text-gray-500" />
+				<label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+					<AlertCircle className="w-4 h-4 text-gray-500 dark:text-gray-400" />
 					Observaciones
 				</label>
 				<textarea
 					value={texto}
 					onChange={(e) => setTexto(e.target.value)}
 					placeholder="Agregue observaciones..."
-					className="w-full text-sm border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
+					className="w-full text-sm border border-gray-300 dark:border-gray-600 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
 					rows="3"
 				/>
 			</div>

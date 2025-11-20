@@ -6,12 +6,12 @@ export default function SidebarDesktop({ open, setOpen }) {
 	const location = useLocation();
 
 	return (
-		<aside className={`bg-white text-gray-700 h-screen ${open ? "w-64" : "w-20"} transition-all duration-300 flex flex-col border-r border-gray-200`}>
-			<div className="flex items-center justify-between p-4 border-b border-gray-200">
+		<aside className={`bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 h-screen ${open ? "w-64" : "w-20"} transition-all duration-300 flex flex-col border-r border-gray-200 dark:border-gray-700`}>
+			<div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
 				{open && <Auditoria />}
 				<button
 					onClick={() => setOpen(!open)}
-					className="p-2 hover:bg-gray-100 rounded-md text-gray-600"
+					className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md text-gray-600 dark:text-gray-400"
 				>
 					☰
 				</button>
@@ -24,8 +24,8 @@ export default function SidebarDesktop({ open, setOpen }) {
 						to={path}
 						className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
 							location.pathname === path
-								? "bg-[#2B6DA6] text-white"
-								: "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+								? "bg-[#2B6DA6] dark:bg-blue-600 text-white"
+								: "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
 						}`}
 					>
 						<Icon size={20} />

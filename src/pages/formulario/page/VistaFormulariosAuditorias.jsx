@@ -150,7 +150,7 @@ function VistaFormulariosAuditorias() {
     }
 
     return (
-        <div className="min-h-screen p-6">
+        <div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
             <div className="max-w-6xl mx-auto">
                 {/* Header con animación */}
                 <motion.div
@@ -161,17 +161,17 @@ function VistaFormulariosAuditorias() {
                 >
                     <div className="flex items-center gap-3">
                         <motion.div
-                            className="p-2 bg-indigo-100 rounded-lg"
+                            className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg"
                             whileHover={{ scale: 1.05, rotate: 5 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <FolderOpen className="text-indigo-600" size={32} />
+                            <FolderOpen className="text-indigo-600 dark:text-indigo-400" size={32} />
                         </motion.div>
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-800">
+                            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                                 Formularios de Auditoría Médica
                             </h1>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">
                                 Gestiona y revisa los formularios de auditoría
                             </p>
                         </div>
@@ -181,7 +181,7 @@ function VistaFormulariosAuditorias() {
                         onClick={crearNuevoFormulario}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors shadow-lg"
+                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-4 py-2 rounded-lg transition-colors shadow-lg"
                     >
                         <Plus size={20} />
                         Nuevo Formulario
@@ -193,7 +193,7 @@ function VistaFormulariosAuditorias() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="bg-white rounded-xl shadow-sm p-4 mb-6"
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-none p-4 mb-6"
                 >
                     <div className="flex flex-col sm:flex-row gap-4">
                         <motion.div
@@ -207,13 +207,13 @@ function VistaFormulariosAuditorias() {
                                 placeholder="Buscar formularios..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                             />
                         </motion.div>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                            className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                         >
                             <Filter size={20} />
                             Filtros
@@ -245,31 +245,31 @@ function VistaFormulariosAuditorias() {
                                     whileHover="hover"
                                     whileTap="tap"
                                     onClick={() => irAEditar(formulario.id)}
-                                    className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer"
+                                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-none border border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
                                 >
                                     {/* Header de la tarjeta */}
-                                    <div className="p-5 border-b border-gray-100">
+                                    <div className="p-5 border-b border-gray-100 dark:border-gray-700">
                                         <div className="flex items-start justify-between mb-3">
                                             <motion.div
-                                                className="p-2 bg-blue-50 rounded-lg"
+                                                className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg"
                                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                             >
-                                                <FileText className="text-blue-600" size={24} />
+                                                <FileText className="text-blue-600 dark:text-blue-400" size={24} />
                                             </motion.div>
-                                            <span className="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                                            <span className="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-1 rounded">
                                                 ID: {formulario.id}
                                             </span>
                                         </div>
-                                        <h3 className="font-semibold text-gray-800 text-lg mb-2 line-clamp-2">
+                                        <h3 className="font-semibold text-gray-800 dark:text-white text-lg mb-2 line-clamp-2">
                                             {formulario.nombre_formulario}
                                         </h3>
-                                        <p className="text-gray-600 text-sm line-clamp-3">
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
                                             {formulario.descripcion || "Sin descripción"}
                                         </p>
                                     </div>
 
                                     {/* Acciones */}
-                                    <div className="p-4 bg-gray-50 flex justify-between">
+                                    <div className="p-4 bg-gray-50 dark:bg-gray-700/50 flex justify-between">
                                         <motion.button
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -277,7 +277,7 @@ function VistaFormulariosAuditorias() {
                                             }}
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
-                                            className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 text-sm font-medium"
+                                            className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-sm font-medium"
                                         >
                                             <Edit3 size={16} />
                                             Editar
@@ -291,7 +291,7 @@ function VistaFormulariosAuditorias() {
                                                 }}
                                                 whileHover={{ scale: 1.2, y: -2 }}
                                                 whileTap={{ scale: 0.9 }}
-                                                className="text-gray-600 hover:text-gray-700 p-1 rounded hover:bg-gray-200 transition-colors"
+                                                className="text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                                                 title="Descargar"
                                             >
                                                 <Download size={16} />
@@ -303,7 +303,7 @@ function VistaFormulariosAuditorias() {
                                                 }}
                                                 whileHover={{ scale: 1.2, y: -2 }}
                                                 whileTap={{ scale: 0.9 }}
-                                                className="text-red-600 hover:text-red-700 p-1 rounded hover:bg-red-50 transition-colors"
+                                                className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
                                                 title="Eliminar"
                                             >
                                                 <Trash2 size={16} />
@@ -325,7 +325,7 @@ function VistaFormulariosAuditorias() {
                             exit={{ opacity: 0, scale: 0.9 }}
                             className="text-center py-12"
                         >
-                            <div className="bg-white rounded-xl shadow-sm p-8 max-w-md mx-auto">
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-none p-8 max-w-md mx-auto">
                                 <motion.div
                                     animate={{
                                         y: [0, -10, 0],
@@ -336,12 +336,12 @@ function VistaFormulariosAuditorias() {
                                         }
                                     }}
                                 >
-                                    <FileText className="mx-auto text-gray-400 mb-4" size={48} />
+                                    <FileText className="mx-auto text-gray-400 dark:text-gray-600 mb-4" size={48} />
                                 </motion.div>
-                                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                                     {searchTerm ? "No se encontraron formularios" : "No hay formularios"}
                                 </h3>
-                                <p className="text-gray-600 mb-4">
+                                <p className="text-gray-600 dark:text-gray-400 mb-4">
                                     {searchTerm
                                         ? "Intenta con otros términos de búsqueda"
                                         : "Comienza creando tu primer formulario de auditoría"
@@ -352,7 +352,7 @@ function VistaFormulariosAuditorias() {
                                         onClick={crearNuevoFormulario}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors shadow-lg"
+                                        className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-4 py-2 rounded-lg transition-colors shadow-lg"
                                     >
                                         Crear Primer Formulario
                                     </motion.button>

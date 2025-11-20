@@ -12,7 +12,7 @@ export default function MainLayout({ children }) {
 	return (
 		<div className="flex h-screen overflow-hidden">
 			<SidebarWrapper />
-			<div className="flex-1 flex flex-col bg-[#F2F2F2]">
+			<div className="flex-1 flex flex-col bg-[#F2F2F2] dark:bg-gray-900">
 				<Navbar sidebarOpen={sidebarOpen} onLogout={handleLogout} />
 				<main className="flex-1 overflow-y-auto p-4">
 					{children}

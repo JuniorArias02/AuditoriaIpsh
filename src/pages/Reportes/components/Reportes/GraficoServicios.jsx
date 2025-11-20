@@ -44,8 +44,8 @@ export default function GraficoServicios({ data }) {
   };
 
   return (
-    <motion.div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-      <h3 className="text-lg font-semibold text-gray-900 mb-6">
+    <motion.div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm dark:shadow-none border border-gray-100 dark:border-gray-700">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
         Auditorías por Servicio
       </h3>
       <div className="h-80">

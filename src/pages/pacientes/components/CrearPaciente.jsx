@@ -114,13 +114,13 @@ function CrearPaciente() {
 	};
 
 	return (
-		<div className={`bg-white rounded-xl shadow-sm border border-gray-200 transition-all duration-300 ${isExpanded ? "mx-auto" : "duration-300"}`}>
+		<div className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 ${isExpanded ? "mx-auto" : ""}`}>
 			{/* Header */}
-			<div className="px-6 py-4 border-b border-gray-200">
+			<div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
 				<div className="flex justify-between items-center">
 					<div>
-						<h2 className="text-2xl font-bold text-gray-900">Pacientes</h2>
-						<p className="text-gray-600 mt-1">
+						<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Pacientes</h2>
+						<p className="text-gray-600 dark:text-gray-400 mt-1">
 							{isExpanded ? "Completa la información del nuevo paciente" : "Gestión de pacientes del sistema"}
 						</p>
 					</div>
@@ -136,7 +136,7 @@ function CrearPaciente() {
 					) : (
 						<button
 							onClick={handleCancel}
-							className="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-lg hover:bg-gray-100"
+							className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
 						>
 							<X className="w-5 h-5" />
 						</button>
@@ -151,7 +151,7 @@ function CrearPaciente() {
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							{/* Documento */}
 							<div className="space-y-2">
-								<label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+								<label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
 									<FileText className="w-4 h-4" />
 									Documento *
 								</label>
@@ -161,14 +161,14 @@ function CrearPaciente() {
 									value={formData.documento}
 									onChange={handleInputChange}
 									required
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors"
+									className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
 									placeholder="Número de documento"
 								/>
 							</div>
 
 							{/* Nombre completo */}
 							<div className="space-y-2">
-								<label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+								<label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
 									<User className="w-4 h-4" />
 									Nombre Completo *
 								</label>
@@ -178,14 +178,14 @@ function CrearPaciente() {
 									value={formData.nombre_completo}
 									onChange={handleInputChange}
 									required
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors"
+									className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
 									placeholder="Nombre completo del paciente"
 								/>
 							</div>
 
 							{/* Fecha de nacimiento */}
 							<div className="space-y-2">
-								<label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+								<label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
 									<Calendar className="w-4 h-4" />
 									Fecha de Nacimiento *
 								</label>
@@ -195,13 +195,13 @@ function CrearPaciente() {
 									value={formData.fecha_nacimiento}
 									onChange={handleInputChange}
 									required
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors"
+									className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
 								/>
 							</div>
 
 							{/* EPS */}
 							<div className="space-y-2">
-								<label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+								<label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
 									<Shield className="w-4 h-4" />
 									EPS *
 								</label>
@@ -210,11 +210,11 @@ function CrearPaciente() {
 									value={formData.eps_id}
 									onChange={handleInputChange}
 									required
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors"
+									className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
 								>
-									<option value="">Selecciona una EPS</option>
+									<option value="" className="text-gray-500 dark:text-gray-400">Selecciona una EPS</option>
 									{epsList.map((e) => (
-										<option key={e.id} value={e.id}>
+										<option key={e.id} value={e.id} className="text-gray-900 dark:text-white">
 											{e.nombre}
 										</option>
 									))}
@@ -223,11 +223,11 @@ function CrearPaciente() {
 						</div>
 
 						{/* Botones */}
-						<div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+						<div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
 							<button
 								type="button"
 								onClick={handleCancel}
-								className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+								className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
 								disabled={loading}
 							>
 								Cancelar

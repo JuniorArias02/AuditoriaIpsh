@@ -229,17 +229,17 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       {step === 'email' && (
         <form onSubmit={handleSubmitEmail} className="space-y-6">
           <div className="text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-              <Mail className="h-6 w-6 text-[#2068A6]" />
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-4">
+              <Mail className="h-6 w-6 text-[#2068A6] dark:text-blue-400" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Recuperar Contraseña</h2>
-            <p className="text-gray-600 mt-2">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Recuperar Contraseña</h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">
               Ingresa tu correo electrónico para recibir un código de verificación
             </p>
           </div>
 
           <div>
-            <label htmlFor="identificador" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="identificador" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Correo Electrónico
             </label>
             <input
@@ -248,17 +248,16 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] dark:focus:ring-blue-400 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               placeholder="Correo o usuario"
             />
-
           </div>
 
           <div className="flex gap-3">
             <button
               type="button"
               onClick={onBackToLogin}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <ArrowLeft size={20} />
               Volver
@@ -266,7 +265,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 bg-[#2068A6] text-white py-3 rounded-lg hover:bg-[#1a5a8a] transition-colors disabled:opacity-50"
+              className="flex-1 bg-[#2068A6] dark:bg-blue-700 text-white py-3 rounded-lg hover:bg-[#1a5a8a] dark:hover:bg-blue-600 transition-colors disabled:opacity-50"
             >
               {isLoading ? 'Enviando...' : 'Enviar Código'}
             </button>
@@ -278,17 +277,17 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       {step === 'code' && (
         <form onSubmit={handleSubmitCode} className="space-y-6">
           <div className="text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-              <Shield className="h-6 w-6 text-[#2068A6]" />
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-4">
+              <Shield className="h-6 w-6 text-[#2068A6] dark:text-blue-400" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Código de Verificación</h2>
-            <p className="text-gray-600 mt-2">
-              Hemos enviado un código a <strong>{email}</strong>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Código de Verificación</h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">
+              Hemos enviado un código a <strong className="text-gray-900 dark:text-white">{email}</strong>
             </p>
           </div>
 
           <div>
-            <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Código de 6 dígitos
             </label>
             <input
@@ -298,7 +297,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
               maxLength={6}
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent text-center text-xl tracking-widest"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] dark:focus:ring-blue-400 focus:border-transparent text-center text-xl tracking-widest bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               placeholder="000000"
             />
           </div>
@@ -307,7 +306,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             <button
               type="button"
               onClick={() => setStep('email')}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <ArrowLeft size={20} />
               Atrás
@@ -315,7 +314,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             <button
               type="submit"
               disabled={isLoading || code.length !== 6}
-              className="flex-1 bg-[#2068A6] text-white py-3 rounded-lg hover:bg-[#1a5a8a] transition-colors disabled:opacity-50"
+              className="flex-1 bg-[#2068A6] dark:bg-blue-700 text-white py-3 rounded-lg hover:bg-[#1a5a8a] dark:hover:bg-blue-600 transition-colors disabled:opacity-50"
             >
               {isLoading ? 'Verificando...' : 'Verificar'}
             </button>
@@ -327,18 +326,18 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       {step === 'newPassword' && (
         <form onSubmit={handleSubmitNewPassword} className="space-y-6">
           <div className="text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-              <Lock className="h-6 w-6 text-[#2068A6]" />
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-4">
+              <Lock className="h-6 w-6 text-[#2068A6] dark:text-blue-400" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Nueva Contraseña</h2>
-            <p className="text-gray-600 mt-2">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Nueva Contraseña</h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">
               Crea una nueva contraseña para tu cuenta
             </p>
           </div>
 
           {/* Nueva Contraseña con opción de mostrar */}
           <div>
-            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Nueva Contraseña
             </label>
             <div className="relative">
@@ -349,13 +348,13 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
                 minLength={6}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] dark:focus:ring-blue-400 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 placeholder="Mínimo 6 caracteres"
               />
               <button
                 type="button"
                 onClick={() => setShowNewPassword(!showNewPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
               >
                 {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
@@ -365,12 +364,12 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             {newPassword && (
               <div className="mt-2">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs text-gray-600">Fortaleza de la contraseña:</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Fortaleza de la contraseña:</span>
                   <span className={`text-xs font-medium ${getPasswordStrength(newPassword).color}`}>
                     {getPasswordStrength(newPassword).text}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div
                     className="h-2 rounded-full transition-all duration-300"
                     style={{
@@ -379,18 +378,18 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
                     }}
                   ></div>
                 </div>
-                <ul className="mt-2 text-xs text-gray-600 space-y-1">
-                  <li className={`flex items-center ${newPassword.length >= 6 ? 'text-green-600' : ''}`}>
-                    {newPassword.length >= 6 ? <Check size={16} color='green' /> : <CircleAlert size={16} color='red' />} Mínimo 6 caracteres
+                <ul className="mt-2 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                  <li className={`flex items-center ${newPassword.length >= 6 ? 'text-green-600 dark:text-green-400' : ''}`}>
+                    {newPassword.length >= 6 ? <Check size={16} className="text-green-600 dark:text-green-400" /> : <CircleAlert size={16} className="text-red-600 dark:text-red-400" />} Mínimo 6 caracteres
                   </li>
-                  <li className={`flex items-center ${/[A-Z]/.test(newPassword) ? 'text-green-600' : ''}`}>
-                    {/[A-Z]/.test(newPassword) ? <Check size={16} color='green' /> : <CircleAlert size={16} color='red' />} Una letra mayúscula
+                  <li className={`flex items-center ${/[A-Z]/.test(newPassword) ? 'text-green-600 dark:text-green-400' : ''}`}>
+                    {/[A-Z]/.test(newPassword) ? <Check size={16} className="text-green-600 dark:text-green-400" /> : <CircleAlert size={16} className="text-red-600 dark:text-red-400" />} Una letra mayúscula
                   </li>
-                  <li className={`flex items-center ${/[0-9]/.test(newPassword) ? 'text-green-600' : ''}`}>
-                    {/[0-9]/.test(newPassword) ? <Check size={16} color='green' /> : <CircleAlert size={16} color='red' />} Un número
+                  <li className={`flex items-center ${/[0-9]/.test(newPassword) ? 'text-green-600 dark:text-green-400' : ''}`}>
+                    {/[0-9]/.test(newPassword) ? <Check size={16} className="text-green-600 dark:text-green-400" /> : <CircleAlert size={16} className="text-red-600 dark:text-red-400" />} Un número
                   </li>
-                  <li className={`flex items-center ${/[!@#$%^&*]/.test(newPassword) ? 'text-green-600' : ''}`}>
-                    {/[!@#$%^&*]/.test(newPassword) ? <Check size={16} color='green' /> : <CircleAlert size={16} color='red' />} Un carácter especial
+                  <li className={`flex items-center ${/[!@#$%^&*]/.test(newPassword) ? 'text-green-600 dark:text-green-400' : ''}`}>
+                    {/[!@#$%^&*]/.test(newPassword) ? <Check size={16} className="text-green-600 dark:text-green-400" /> : <CircleAlert size={16} className="text-red-600 dark:text-red-400" />} Un carácter especial
                   </li>
                 </ul>
               </div>
@@ -399,7 +398,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
 
           {/* Confirmar Contraseña con opción de mostrar */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Confirmar Contraseña
             </label>
             <div className="relative">
@@ -409,13 +408,13 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2068A6] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#2068A6] dark:focus:ring-blue-400 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 placeholder="Repite tu contraseña"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
               >
                 {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
@@ -424,7 +423,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             {/* Indicador de coincidencia */}
             {confirmPassword && (
               <div className="mt-2">
-                <span className={`text-xs font-medium ${newPassword === confirmPassword ? 'text-green-600' : 'text-red-600'
+                <span className={`text-xs font-medium ${newPassword === confirmPassword ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                   }`}>
                   {newPassword === confirmPassword ? '✅ Las contraseñas coinciden' : '❌ Las contraseñas no coinciden'}
                 </span>
@@ -436,7 +435,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             <button
               type="button"
               onClick={() => setStep('code')}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <ArrowLeft size={20} />
               Atrás
@@ -444,7 +443,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
             <button
               type="submit"
               disabled={isLoading || !newPassword || !confirmPassword || newPassword !== confirmPassword}
-              className="flex-1 bg-[#2068A6] text-white py-3 rounded-lg hover:bg-[#1a5a8a] transition-colors disabled:opacity-50"
+              className="flex-1 bg-[#2068A6] dark:bg-blue-700 text-white py-3 rounded-lg hover:bg-[#1a5a8a] dark:hover:bg-blue-600 transition-colors disabled:opacity-50"
             >
               {isLoading ? 'Actualizando...' : 'Actualizar'}
             </button>
@@ -455,16 +454,16 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       {/* Paso 4: Éxito */}
       {step === 'success' && (
         <div className="text-center space-y-6">
-          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+            <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">¡Contraseña Actualizada!</h2>
-          <p className="text-gray-600">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">¡Contraseña Actualizada!</h2>
+          <p className="text-gray-600 dark:text-gray-400">
             Tu contraseña ha sido actualizada exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.
           </p>
           <button
             onClick={onBackToLogin}
-            className="w-full bg-[#2068A6] text-white py-3 rounded-lg hover:bg-[#1a5a8a] transition-colors"
+            className="w-full bg-[#2068A6] dark:bg-blue-700 text-white py-3 rounded-lg hover:bg-[#1a5a8a] dark:hover:bg-blue-600 transition-colors"
           >
             Volver al Inicio de Sesión
           </button>

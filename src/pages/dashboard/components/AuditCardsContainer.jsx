@@ -24,40 +24,40 @@ export function AuditCardsContainer() {
     fetchInforme();
   }, []);
 
-  if (!data) return <p className="text-gray-500">Cargando métricas...</p>;
+  if (!data) return <p className="text-gray-500 dark:text-gray-400">Cargando métricas...</p>;
 
   const metrics = [
     {
       title: "Auditorías Totales",
       value: data.total_auditorias,
       description: "Auditorías completadas",
-      icon: <FileText className="w-6 h-6 text-blue-600" />,
-      color: "border-blue-500",
-      bgColor: "bg-blue-50",
+      icon: <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />,
+      color: "border-blue-500 dark:border-blue-400",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
     },
     {
       title: "Satisfactorias",
       value: data.mayores_95,
       description: "> 95% cumplimiento",
-      icon: <CheckCircle className="w-6 h-6 text-green-600" />,
-      color: "border-green-500",
-      bgColor: "bg-green-50",
+      icon: <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />,
+      color: "border-green-500 dark:border-green-400",
+      bgColor: "bg-green-50 dark:bg-green-900/20",
     },
     {
       title: "Aceptables",
       value: data.entre_85_94,
       description: "85-94% cumplimiento",
-      icon: <Clock className="w-6 h-6 text-amber-600" />,
-      color: "border-amber-500",
-      bgColor: "bg-amber-50",
+      icon: <Clock className="w-6 h-6 text-amber-600 dark:text-amber-400" />,
+      color: "border-amber-500 dark:border-amber-400",
+      bgColor: "bg-amber-50 dark:bg-amber-900/20",
     },
     {
       title: "Inaceptables",
       value: data.menores_85,
       description: "< 85% cumplimiento",
-      icon: <AlertTriangle className="w-6 h-6 text-red-600" />,
-      color: "border-red-500",
-      bgColor: "bg-red-50",
+      icon: <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400" />,
+      color: "border-red-500 dark:border-red-400",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
     },
   ];
 

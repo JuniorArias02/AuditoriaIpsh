@@ -11,7 +11,7 @@ import AdministracionSistemas from './components/AdministracionSistemas';
 export function Dashboard() {
 	return (
 		<>
-			<main className="max-w-8xl mx-auto p-6 space-y-8">
+			<main className="max-w-8xl mx-auto p-6 space-y-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
 				<Header />
 				<AuditCardsContainer />
 				<div className="pt-2"></div>

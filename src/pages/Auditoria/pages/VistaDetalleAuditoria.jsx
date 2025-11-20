@@ -5,7 +5,7 @@ import { useAuth } from "../../../store/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuditoriaServices } from "../../../api/services/auditoriaServices";
 import EvaluacionAuditoria from "../componets/VistaDetalleAuditoria/EvaluacionAuditoria"
-import { Download, ArrowLeft} from "lucide-react";
+import { Download, ArrowLeft } from "lucide-react";
 
 function VistaDetalleAuditoria() {
 	const { token } = useAuth();
@@ -47,28 +47,27 @@ function VistaDetalleAuditoria() {
 	};
 
 	if (loading) return <p className="p-6 text-gray-500">Cargando detalle...</p>;
-
 	return (
-		<div className="p-6 space-y-6">
+		<div className="p-6 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
 			{/* Header con botón de regresar */}
 			<div className="flex justify-between items-start mb-2">
 				<div className="flex items-center gap-4">
 					<button
 						onClick={handleRegresar}
-						className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors duration-200"
+						className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200"
 					>
 						<ArrowLeft className="w-5 h-5" />
 						Regresar
 					</button>
-					<div className="border-l border-gray-300 h-6"></div>
+					<div className="border-l border-gray-300 dark:border-gray-600 h-6"></div>
 					<div>
-						<h1 className="text-2xl font-bold text-gray-800">Detalle de Auditoría</h1>
-						<p className="text-gray-600 mt-1">ID: {auditoriaBase.id}</p>
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-white">Detalle de Auditoría</h1>
+						<p className="text-gray-600 dark:text-gray-400 mt-1">ID: {auditoriaBase.id}</p>
 					</div>
 				</div>
 				<button
 					onClick={handleDescargar}
-					className="bg-[#1462A6] hover:bg-[#143192]/80 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
+					className="bg-[#1462A6] hover:bg-[#143192]/80 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
 				>
 					<Download className="w-4 h-4" />
 					Descargar

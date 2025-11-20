@@ -71,12 +71,12 @@ export default function GraficoDimension({ data }) {
   };
 
   return (
-    <motion.div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 w-full">
+    <motion.div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-sm dark:shadow-none border border-gray-100 dark:border-gray-700 w-full">
       <div className="flex items-center justify-between mb-4 sm:mb-6">
-        <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
           Cumplimiento por Dimensión
         </h3>
-        <PieChart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+        <PieChart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 dark:text-gray-500" />
       </div>
 
       {/* Contenedor responsive para el gráfico */}
