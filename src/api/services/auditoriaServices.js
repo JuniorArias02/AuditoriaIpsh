@@ -88,16 +88,21 @@ export class AuditoriaServices {
 		return res.data;
 	}
 
-	async obtenerResumenMensual(d) {
-		if (!d) throw new Error("Se requiere dia como referencia");
-		const res = await axios.get(`${AUDITORIA.RESUMEN_MENSUAL}/${d}`);
+	async obtenerResumenMensual({ fecha_inicio, fecha_fin }) {
+		const res = await axios.get(AUDITORIA.RESUMEN_MENSUAL, {
+			params: { fecha_inicio, fecha_fin },
+		});
 		return res.data;
 	}
 
-	async obtenerReportesAuditorias() {
-		const res = await axios.get(AUDITORIA.REPORTES_AUDITORIAS);
+
+	async obtenerReportesAuditorias({ fecha_inicio, fecha_fin }) {
+		const res = await axios.get(AUDITORIA.REPORTES_AUDITORIAS, {
+			params: { fecha_inicio, fecha_fin }
+		});
 		return res.data;
 	}
+
 
 	async eliminarAuditoria(id) {
 		const res = await axios.delete(`${AUDITORIA.ELIMINAR}/${id}`, {

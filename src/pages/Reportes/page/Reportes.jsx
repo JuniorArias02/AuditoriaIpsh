@@ -34,9 +34,14 @@ ChartJS.register(
   Filler
 );
 
+
 function Reportes() {
   const auditoriaServices = new AuditoriaServices();
-  const [filtroFecha, setFiltroFecha] = useState('30');
+
+
+  const [fechaInicio, setFechaInicio] = useState('');
+  const [fechaFin, setFechaFin] = useState('');
+
   const [datos, setDatos] = useState({
     tendencia: [],
     por_dimension: [],
@@ -49,50 +54,67 @@ function Reportes() {
     cumplimiento_promedio: { actual: 0, variacion: 0 },
     profesionales: { actual: 0, variacion: 0 },
     auditorias_mes: { actual: 0, variacion: 0, anterior: 0 }
-
   });
 
-
   useEffect(() => {
+    if (!fechaInicio || !fechaFin) return;
     obtenerReportes();
     obtenerReportesResumen();
-  }, [filtroFecha]);
+  }, [fechaInicio, fechaFin]);
 
   const obtenerReportes = async () => {
     try {
-      const res = await auditoriaServices.obtenerReportesAuditorias();
-      console.log(res);
-      setDatos(res.data);
+      const res = await auditoriaServices.obtenerReportesAuditorias({
+        fecha_inicio: fechaInicio,
+        fecha_fin: fechaFin,
+      });
 
+      setDatos(res.data);
     } catch (error) {
       console.error("Error obteniendo reportes:", error);
     }
   };
 
+
   const obtenerReportesResumen = async () => {
     try {
-      const res = await auditoriaServices.obtenerResumenMensual(filtroFecha);
-      console.log(res);
+      const res = await auditoriaServices.obtenerResumenMensual({
+        fecha_inicio: fechaInicio,
+        fecha_fin: fechaFin,
+      });
+
       setDatosResumen(res.data);
     } catch (error) {
-      console.error("Error obteniendo reportes:", error);
+      console.error("Error obteniendo resumen:", error);
     }
   };
 
   return (
     <div className="p-6 space-y-10">
-      {/* FILTRO */}
-      <div className="flex justify-end mb-6">
-        <select
-          value={filtroFecha}
-          onChange={(e) => setFiltroFecha(e.target.value)}
-          className="bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="30">Último mes</option>
-          <option value="60">Últimos 3 meses</option>
-          <option value="90">Últimos 6 meses</option>
-          <option value="180">Último año</option>
-        </select>
+
+      {/* 🔥 FILTROS DE FECHA */}
+      <div className="flex items-center gap-4 mb-6">
+
+        <div className="flex flex-col">
+          <label className="text-sm text-gray-600">Fecha inicio</label>
+          <input
+            type="date"
+            value={fechaInicio}
+            onChange={(e) => setFechaInicio(e.target.value)}
+            className="bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="text-sm text-gray-600">Fecha fin</label>
+          <input
+            type="date"
+            value={fechaFin}
+            onChange={(e) => setFechaFin(e.target.value)}
+            className="bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm"
+          />
+        </div>
+
       </div>
 
       <ResumenAuditoria data={datosResumen} />
@@ -108,9 +130,10 @@ function Reportes() {
         <TopProfesionales data={datos.top_profesionales} />
       </div>
 
-      {/* <CriteriosEvaluados /> */}
     </div>
   );
 }
+
+
 
 export default Reportes;

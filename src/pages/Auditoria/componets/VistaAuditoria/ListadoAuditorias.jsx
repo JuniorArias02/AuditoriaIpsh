@@ -16,7 +16,6 @@ const ListadoAuditorias = ({ auditoriasExternas }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Si recibimos auditorías filtradas, las mostramos directamente
     if (!token) return;
 
     if (auditoriasExternas.length > 0) {
