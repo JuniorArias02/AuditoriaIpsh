@@ -5,12 +5,15 @@ import ForgotPasswordForm from "./componets/ForgotPasswordForm"; // Nuevo compon
 import Footer from "./componets/Foother";
 import logoIpsch from "../../../public/ipsch.png";
 import { useState } from "react";
+import ChristmasWelcome from "./componets/ChristmasWelcome";
 
 export function FormLogin() {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   return (
     <div className="min-h-screen flex">
+      {showWelcome && <ChristmasWelcome onComplete={() => setShowWelcome(false)} />}
       <div className="flex-1 flex items-center justify-center px-8 bg-white dark:bg-gray-900 relative">
 
         {/* Logo en esquina superior izquierda */}
