@@ -51,7 +51,7 @@ export function ResumenDiarioCards() {
 				<p>{error}</p>
 			</div>
 		);
-	}
+	} 
 
 	const StatCard = ({ value, label, bgColorClass, valueColorClass }) => (
 		<div className={`p-6 rounded-xl text-center ${bgColorClass}`}>
