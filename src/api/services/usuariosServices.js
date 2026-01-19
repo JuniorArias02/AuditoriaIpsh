@@ -23,13 +23,33 @@ export class UsuariosServices {
 	}
 
 	async validarUsuario(form) {
-		const res = await axios.post(USUARIOS.VALIDAR_USUARIO, form);
-		return res.data;
+		try {
+			const res = await axios.post(USUARIOS.VALIDAR_USUARIO, form);
+			return res.data;
+		} catch (error) {
+			if (error.response) {
+				return error.response.data;
+			}
+			return {
+				success: false,
+				message: 'Error de conexión con el servidor'
+			};
+		}
 	}
 
 	async cambiarContrasena(form) {
-		const res = await axios.patch(USUARIOS.CAMBIAR_CONTRASENA, form);
-		return res.data;
+		try {
+			const res = await axios.patch(USUARIOS.CAMBIAR_CONTRASENA, form);
+			return res.data;
+		} catch (error) {
+			if (error.response) {
+				return error.response.data;
+			}
+			return {
+				success: false,
+				message: 'Error de conexión con el servidor'
+			};
+		}
 	}
 
 

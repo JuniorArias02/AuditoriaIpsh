@@ -25,21 +25,24 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
     try {
       const res = await usuarioService.validarUsuario({ identificador: email });
 
+
+
       if (res.success) {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Usuario encontrado',
           text: 'Te enviamos un código de verificación al correo.',
           confirmButtonText: 'Continuar'
         });
 
+
         setUsuarioId(res.token);
         setStep('code');
 
       } else {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'error',
           title: 'Correo no válido',
           text: res.message || 'No encontramos un usuario con ese correo.',
@@ -48,7 +51,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       }
     } catch (error) {
 
-      Swal.fire({
+      await Swal.fire({
         icon: 'error',
         title: 'Error interno',
         text: 'Hubo un fallo procesando la solicitud.',
@@ -74,21 +77,24 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
         codigo: code
       });
 
+
+
       if (res.success) {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Código validado',
           text: 'Ahora puedes crear tu nueva contraseña.',
           confirmButtonText: 'Continuar'
         });
 
+
         setUsuarioId(res.token);
         setStep('newPassword');
 
       } else {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'error',
           title: 'Código incorrecto',
           text: res.message || 'El código no coincide, intenta de nuevo.',
@@ -97,7 +103,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       }
     } catch (error) {
 
-      Swal.fire({
+      await Swal.fire({
         icon: 'error',
         title: 'Error interno',
         text: 'Hubo un problema con la verificación. Intenta más tarde.',
@@ -115,7 +121,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      Swal.fire({
+      await Swal.fire({
         icon: 'warning',
         title: 'Contraseñas diferentes',
         text: 'Las contraseñas no coinciden, revisa y vuelve a intentar.',
@@ -131,9 +137,11 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
         new_password: newPassword
       });
 
+
+
       if (res.success) {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Contraseña actualizada',
           text: 'Tu contraseña se cambió correctamente.',
@@ -144,7 +152,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
 
       } else {
 
-        Swal.fire({
+        await Swal.fire({
           icon: 'error',
           title: 'No se pudo cambiar la contraseña',
           text: res.message || 'Inténtalo de nuevo más tarde.',
@@ -153,7 +161,7 @@ export default function ForgotPasswordForm({ onBackToLogin }) {
       }
     } catch (error) {
 
-      Swal.fire({
+      await Swal.fire({
         icon: 'error',
         title: 'Error interno',
         text: 'Hubo un problema con el servidor.',

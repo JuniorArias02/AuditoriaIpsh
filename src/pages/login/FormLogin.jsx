@@ -1,11 +1,11 @@
 import { Stethoscope } from "lucide-react";
-import fondo from "../../../public/fondo.png";
+// import fondo from "../../../public/fondo.png";
 import LoginForm from "./componets/LoginForm";
 import ForgotPasswordForm from "./componets/ForgotPasswordForm"; // Nuevo componente
 import Footer from "./componets/Foother";
 import logoIpsch from "../../../public/ipsch.png";
 import { useState } from "react";
-import ChristmasWelcome from "./componets/ChristmasWelcome";
+// import ChristmasWelcome from "./componets/ChristmasWelcome";
 
 export function FormLogin() {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -13,7 +13,7 @@ export function FormLogin() {
 
   return (
     <div className="min-h-screen flex">
-      {showWelcome && <ChristmasWelcome onComplete={() => setShowWelcome(false)} />}
+      {/* {showWelcome && <ChristmasWelcome onComplete={() => setShowWelcome(false)} />} */}  
       <div className="flex-1 flex items-center justify-center px-8 bg-white dark:bg-gray-900 relative">
 
         {/* Logo en esquina superior izquierda */}
@@ -54,8 +54,33 @@ export function FormLogin() {
         </div>
       </div>
 
-      <div className="hidden lg:flex flex-1 justify-center items-center p-4 bg-gray-50 dark:bg-gray-800">
-        <img src={fondo} alt="Imagen de login" className="max-w-full max-h-full object-contain" />
+      <div className="hidden lg:flex flex-1 relative bg-[#2068A6] overflow-hidden items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-900 opacity-90"></div>
+
+        {/* Diagonal Pattern SVG */}
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0 100 L100 0 L100 100 Z" fill="white" />
+        </svg>
+
+        <div className="relative z-10 text-white p-12 max-w-xl">
+          <h2 className="text-4xl font-bold mb-6 leading-tight">
+            Gestión Integral de Auditorías Médicas
+          </h2>
+          <p className="text-lg text-blue-100 mb-8 leading-relaxed">
+            Optimice sus procesos, garantice la calidad y mantenga el control total de sus auditorías con nuestra plataforma especializada.
+          </p>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20">
+              <h3 className="font-semibold text-xl mb-2">Eficiencia</h3>
+              <p className="text-sm text-blue-100">Automatización de flujos de trabajo y reportes.</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20">
+              <h3 className="font-semibold text-xl mb-2">Seguridad</h3>
+              <p className="text-sm text-blue-100">Protección de datos y cumplimiento normativo.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
